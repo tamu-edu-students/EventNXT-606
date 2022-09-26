@@ -1,10 +1,8 @@
 setup:
-  config:
-    POSTGRES_HOST_AUTH_METHOD: trust
+ addons:
+   - plan: heroku-postgresql
 build:
   docker:
     web: Dockerfile
-    db: postgres:alpine
 run:
   web: bundle exec rails server -p $PORT -b 0.0.0.0
-  db: bundle exec rails rake db:create db:migrate db:seed
