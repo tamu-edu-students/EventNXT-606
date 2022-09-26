@@ -6,6 +6,7 @@ RUN apt update -qq && apt install -y \
   nodejs
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
+COPY bin /app/bin
 RUN gem install bundler
 RUN bundle install
 CMD ["bundle", "exec", "rails", "server", "-p", "3000", "-b", "0.0.0.0"]
