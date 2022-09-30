@@ -1,11 +1,10 @@
-FROM ruby:2.7.5
-WORKDIR /app
+FROM ruby:3.1.2
+WORKDIR /eventnxt
 RUN apt update -qq && apt install -y \
   build-essential \
   ruby-dev \
   nodejs
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+COPY . /eventnxt
 RUN gem install bundler
 RUN bundle install
 CMD ["bundle", "exec", "rails", "server", "-p", "3000", "-b", "0.0.0.0"]

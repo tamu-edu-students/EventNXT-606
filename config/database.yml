@@ -14,7 +14,4 @@ test:
   database: db-test
 
 production:
-  <<: *default
-  database: eventnxt
-  username: eventnxt
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
