@@ -1,0 +1,13 @@
+<%= form_with model: seat, class: 'divTableRow', id: dom_id(seat, 'inline_form') do |form| %>
+    <div class="divTableCell">
+      <%= form.text_field :category %>
+    </div>
+  
+    <div class="divTableCell">
+      <%= form.text_field :total_count %>
+    </div>
+  
+    <div class="divTableCell">
+      <%= form.submit %>
+    </div>
+  <% end %>

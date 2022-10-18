@@ -37,3 +37,5 @@ end
 
 gem "web-console"
 gem "spring"
+
+gem "jquery-rails"

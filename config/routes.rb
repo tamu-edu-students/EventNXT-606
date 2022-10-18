@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :seats
   use_doorkeeper do
     skip_controllers :applications, :authorized_applications
   end

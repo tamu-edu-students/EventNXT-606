@@ -1,0 +1,6 @@
+<div class="divTableCell"><%= seat.category %></div>
+<div class="divTableCell"><%= seat.total_count %></div>
+<div class="divTableCell">
+  <%= link_to('Edit', edit_seat_path(seat), remote: true)%>
+  <%= link_to('Destroy', seat, method: :delete, data: { confirm: 'Are you sure?'}) %>
+</div>
