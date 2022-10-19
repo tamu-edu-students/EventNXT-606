@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Hi {{guest.first_name}} {{guest.last_name}},</p>
+    <p>
+       {{sender.first_name}} {{sender.last_name}} has stopped accepting RSVP invitations.
+    </p>
+    <div class="ticket">
+        <h2>Event Title: {{event.title}}</h2>
+        <!--<div id="img"><img src='{{event.image.url}}'></div>-->
+        <p><b>Event date: {{event.datetime}}</b></p>
+        <p><strong>About Event:</strong> {{event.description}}</p>
+        <br><br><br>
+        <br><br><br><br>
+    </div>  
+    <p>Thank you and have a great day!</p><br>
+    <h2 style="color: white; background-color: lightblue; padding: 15px">EVENTNXT Team</h2>
+  </body>
+</html>

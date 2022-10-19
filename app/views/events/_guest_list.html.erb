@@ -16,10 +16,10 @@
     </div>
   </template>
   <template data-guest-target='template'>
-    <form class='row' data-guest-target='form' data-action='change->guest#updateForm'>
-      <div class='col-md-auto'><input class='form-check-input' type='checkbox' name='id' data-nxt-id data-destroy-target='destroy' data-update-target='update'></div>
+    <form class='row' data-guest-target='form' data-action='change->guest#updateForm' name='guest_display'>
+      <div class='col-md-auto'><input class='form-check-input' type='checkbox' name='guest_selector' data-nxt-id data-destroy-target='destroy' data-update-target='update'></div>
       <div class='col-md-1'><span data-nxt-first_name></span> <span data-nxt-last_name></span></div>
-      <div class='col-md-2'><p data-nxt-email></p></div>
+      <div class='col-md-2'><input name="guest_email" type="text" data-nxt-email disabled></div>
       <div class='col-md-1'><input class='form-control' type='text' name='affiliation' data-nxt-affiliation></p></div>
       <div class='col-md-1'><p data-nxt-added_by></p></div>
       <div class='col-md-1'><select class='form-select form-select-sm' name='seat_id' data-nxt-category data-guest-target='seat'></select></div>
@@ -47,7 +47,7 @@
   </template>
   <div class="container border-bottom border-dark" data-guest-target='dom'>
     <div class='row align-items-end mb-4 border-bottom border-dark'>
-      <div class='col-md-auto'><input class='form-check-input invisible' type='checkbox' name='id' data-nxt-id data-destroy-target='destroy' data-update-target='update'></div>
+      <div class='col-md-auto'><input class='form-check-input' type='checkbox' name='selectAll' onClick="toggle(this)"></div>
       <div class='col-md-1'><span data-bs-toggle='tooltip' data-bs-placement='top' title='123'>Name</span></div>
       <div class='col-md-2'>Email</div>
       <div class='col-md-1'>Affiliation</div>
@@ -96,3 +96,12 @@
     </form>
   </div>
 </div>
+
+<script>
+function toggle(source) {
+  checkboxes = document.getElementsByName('guest_selector');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes[i].checked = source.checked;
+  }
+}
+</script>

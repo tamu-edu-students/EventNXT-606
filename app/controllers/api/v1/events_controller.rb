@@ -125,9 +125,18 @@ class Api::V1::EventsController < Api::V1::ApiController
     confirmation_template.is_html = true
     confirmation_template.event_id = event.id
     confirmation_template.user_id = current_user.id
+
+    rsvp_end_template = EmailTemplate.new 
+    rsvp_end_template.name = 'RSVP Expired'
+    rsvp_end_template.subject = '{{event.title}} - RSVP Expired'
+    rsvp_end_template.body = File.read(Rails.root.join('app', 'views', 'guest_mailer', 'rsvp_end_email.html'))
+    rsvp_end_template.is_html = true
+    rsvp_end_template.event_id = event.id
+    rsvp_end_template.user_id = current_user.id
     
     rsvp_template.save
     confirmation_template.save
+    rsvp_end_template.save
   end
 
   def event_params

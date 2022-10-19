@@ -27,11 +27,13 @@ Rails.application.routes.draw do
   post 'events/create_event'
   get 'events/show'
   post 'events/show'
+  post 'email/bulk'
 
   namespace :api, except: [:new, :edit] do
     namespace :v1 do
       resources :users, except: [:create]
-      resources :email, only: [:create]
+      post '/email/bulk' => 'email#bulk'
+      post '/email' => 'email#create'
       resources :events do
         get '/summary' => 'events#summary'
         resource :guest_referrals, path: :refer, only: [:show, :create]

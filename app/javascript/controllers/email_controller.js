@@ -74,6 +74,17 @@ export default class extends Controller {
     this.emailTarget.reset();
   }
 
+  sendBulkEmail(e) {
+    fetch(`/api/v1/email/bulk`, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("access_token"),
+      },
+      method: "POST",
+      body: new FormData(this.emailTarget)
+    }).then(response => this.dispatch('emailed'))
+    this.emailTarget.reset();
+  }
+
   sendTemplate(e) {
     let method;
     let resource;

@@ -1,0 +1,45 @@
+<div data-controller='email dynamic' data-email-eventid-value=<%= @event_id %> data-action='email:emailed->dynamic#reload'>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bulk-email" data-action='email#queryTemplates'>
+    Bulk Email
+  </button>
+  <div class='modal fade' id='bulk-email' tabindex='-1' aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Send Email</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id='form-email' data-email-target='email'>
+            <select class='form-select mb-2' name='template_id'
+                data-email-target='select' data-action='change->email#loadTemplate'>
+              <option value=''>Generic</option>
+            </select>
+            <input type='hidden' type='number' name='event_id' value=<%= @event_id %>>
+            <div class='form-floating mb-2'>
+              <input class='form-control' id='email-from' type='email' name='senders[]'>
+              <label for='email-from'>From</label>
+            </div>
+            <div class='form-floating mb-2'>
+              <input class='form-control' id='email-to' type='email' name='recipients[]'>
+              <label for='email-to'>To</label>
+            </div>
+            <div class='form-floating mb-2'>
+              <input class='form-control' id='email-subject' type='text' name='subject' data-email-target='subject'>
+              <label for='email-subject'>Subject</label>
+            </div>
+            <div class='form-floating'>
+              <textarea id='email-body' class='form-control h-100' name='body' data-email-target='body'></textarea>
+              <label for='email-body'>Body</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" type='submit' form='form-email'
+              data-bs-dismiss="modal" data-action='email#sendBulkEmail'>Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

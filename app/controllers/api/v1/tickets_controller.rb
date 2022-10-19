@@ -51,7 +51,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
     p = params.permit(:id, :seat_id, :allotted).to_h
     p[:guest_id] = p.delete :id
     p[:committed] = 0
-    p[:allotted] = 1
+    #p[:allotted] = 1
     logger.debug p
     return p
   end
