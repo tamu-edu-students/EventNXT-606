@@ -3,15 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   #before_action :authenticate_user!, :except => []
   # protect_from_forgery prepend: true, with: :exception
-  before_action :set_cache_headers
-
-  private
-
-  def set_cache_headers
-    response.headers["Cache-Control"] = "no-cache, no-store"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "Mon, 01 Jan 1990 00:00:00 GMT"
-  end
   
   helper_method :current_user
   protected
