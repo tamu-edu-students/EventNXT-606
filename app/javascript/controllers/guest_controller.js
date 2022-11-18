@@ -194,4 +194,67 @@ export default class GuestController extends IndexController {
         }
       });
   }
+  
+  view_guest_seats(e){
+    let form = e.currentTarget
+    console.log(form)
+    let guestId = form.getAttribute('data-nxt-id')
+    console.log("guestId ",guestId)
+
+    fetch(`${this.urlValue}/${guestId}/`)
+
+    .then((response) => {
+      response.json().then(
+        (data) => {
+          console.log(data)
+          let name = data.first_name + " " + data.last_name ;
+          document.getElementById('guest-name').innerHTML = name;
+        });
+    });
+    
+      fetch(`${this.seaturlValue}`)
+
+      .then((response) => {
+        response.json().then(
+          (data) => {
+
+            let map_cat_id = new Map();
+
+            data.forEach((itemData) => {
+              map_cat_id.set(itemData.id, itemData.category);
+            });
+
+            console.log("map_cat_id", map_cat_id)
+
+
+          fetch(`${this.urlValue}/${guestId}/tickets/`).then((response) => {
+            console.log(response);
+            response.json().then(
+              (data) => {
+                console.log(data);
+      
+                console.log("data",data.length);
+      
+              if (data.length > 0) {
+                var temp = "";
+                data.forEach((itemData) => {
+                  temp += "<tr>";
+                  // temp += "<td>" + itemData.id + "</td>";
+                  // temp += "<td>" + itemData.guest_id + "</td>";
+                  temp += "<td width=199.8>" + map_cat_id.get(itemData.seat_id) + "</td>";
+                  temp += "<td width=199.8>" + itemData.committed + "</td>";
+                  temp += "<td width=199.8>" + itemData.allotted + "</td></tr>";
+                });
+      
+                document.getElementById('data-check').innerHTML = temp;
+      
+                console.log("temp", temp)
+              }
+            });
+            });
+
+        });
+    });
+    
+  }
 }
