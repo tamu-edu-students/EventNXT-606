@@ -210,7 +210,7 @@ export default class GuestController extends IndexController {
           for (const opt of opts) {
             select.add(opt)
             if (select.getAttribute('data-nxt-category') === opt.value)
-              opt.setAttribute('selected', true)
+              opt.setAttribute('selected', true);
           }
         }
       });
