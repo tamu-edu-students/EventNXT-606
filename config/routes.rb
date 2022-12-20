@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   namespace :api, except: [:new, :edit] do
     namespace :v1 do
       resources :users, except: [:create]
+      get '/users/change_status/:id' => 'users#change_status'
+      get '/get_all_users' => 'users#get_all'
       post '/email/bulk' => 'email#bulk'
       post '/email/bulkReferral' => 'email#bulkReferral'
       post '/email' => 'email#create'

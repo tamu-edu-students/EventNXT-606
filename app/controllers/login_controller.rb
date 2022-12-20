@@ -1,11 +1,16 @@
 class LoginController < Doorkeeper::TokensController
   def create
     addtl = { client_id: client_uid, client_secret: client_secret }
-    if User.find_by(email: params[:email])&.is_admin
+    user = User.find_by(email: params[:email])
+    if user&.is_admin
       addtl.merge!({ scope: 'admin' })
     end
     self.request.params.merge!(addtl)
-    super
+    if user&.deactivated
+      render json: { error_description: "User has been deactivated. Please contact admin" }, status: :forbidden
+    else 
+     super
+    end
   end
 
   private

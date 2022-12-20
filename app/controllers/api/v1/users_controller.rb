@@ -23,7 +23,19 @@ class Api::V1::UsersController < Api::V1::ApiController
       render json: user.errors, status: :unprocessable_entity
     end
   end
+
+  def get_all
+    users = User.all
+    render json: users
+  end
   
+  def change_status
+    user = User.find(params[:id])
+    user.deactivated = !user.deactivated
+    user.save
+    render json:user
+  end
+
   def destroy
     user = User.find(params[:id])
     user.update_attribute(:deactivated, true)
