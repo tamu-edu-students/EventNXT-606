@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.1.2"
 
 gem "rails", "~> 7.0.0"
-gem "pg", "~> 1.4.3"
+
 gem "mustache", "~> 1.1"
 gem "tzinfo-data"
 gem "sprockets-rails"
@@ -33,7 +33,13 @@ group :development, :test do
   gem "database_cleaner", "~> 2.0.0"
   gem "faker", "~> 2.20.0"
   gem "factory_bot_rails", "~> 6.2.0"
+
+  gem 'sqlite3', '~> 1.6'
 end
+
+group :production do
+  gem "pg", "~> 1.4.3"
+end  
 
 gem "web-console"
 gem "spring"
