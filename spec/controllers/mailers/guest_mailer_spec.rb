@@ -20,18 +20,70 @@ RSpec.describe GuestMailer, type: :mailer do
   end
 
   describe "referral_email" do
-    # Similar to above
+    let(:event){create(:event)}
+    let(:guest){create(:guest)}
+    let(:mail){ GuestMailer.referral_email(event,guest)}
+    it "renders the headers" do
+      expect(mail.subject).to eq("#{event.title} - Invitation")
+      expect(mail.to).to eq([guest.email])
+      expect(mail.from).to eq(["from@example.com"]) 
+    end
+
+    it "renders the body" do
+      expect(mail.body.encoded).to match(event.title)
+      expect(mail.body.encoded).to match(guest.first_name)
+      expect(mail.body.encoded).to match(guest.last_name)
+    end
+    
   end
 
   describe "purchase_tickets_email" do
-    # Similar to above
+    let(:event){create(:event)}
+    let(:guest){create(:guest)}
+    let(:mail){ GuestMailer.purchase_tickets_email(referral_email, event, guest)}
+   
+   it "renders the headers" do
+      expect(mail.subject).to eq("#{event.title} - Purchase Tickets")
+      expect(mail.to).to eq([guest.email])
+      expect(mail.from).to eq(["from@example.com"])
+    end
+    it "renders the body" do
+      expect(mail.body.encoded).to match(event.title)
+      expect(mail.body.encoded).to match(guest.first_name)
+      expect(mail.body.encoded).to match(guest.last_name)
+    end
+   
   end
 
   describe "rsvp_confirmation_email" do
-    # Similar to above
+    let(:event){create(:event)}
+    let(:guest){create(:guest)}
+    let(:mail){ GuestMailer.rsvp_confirmation_email(event,guest)}
+    it "renders the headers" do
+      expect(mail.subject).to eq("#{event.title} - Seating Confirmation")
+      expect(mail.to).to eq([guest.email])
+      expect(mail.from).to eq(["from@example.com"]) 
+    end
+    it "renders the body" do
+      expect(mail.body.encoded).to match(event.title)
+      expect(mail.body.encoded).to match(guest.first_name)
+      expect(mail.body.encoded).to match(guest.last_name)
+    end
   end
 
   describe "rsvp_guest_count_email" do
-    # Similar to above
+    let(:event){create(:event)}
+    let(:guest){create(:guest)}
+    let(:mail){ GuestMailer.rsvp_guest_count_email(event,guest)}
+     it "renders the headers" do
+      expect(mail.subject).to eq("#{event.title} - Request Confirmation")
+      expect(mail.to).to eq([guest.email])
+      expect(mail.from).to eq(["from@example.com"]) 
+    end
+    it "renders the body" do
+      expect(mail.body.encoded).to match(event.title)
+      expect(mail.body.encoded).to match(guest.first_name)
+      expect(mail.body.encoded).to match(guest.last_name)
+    end
   end
 end
