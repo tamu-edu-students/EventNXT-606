@@ -29,11 +29,11 @@ end
         let(:mail){GenericMailer.mailer(senders, recipients, subject, body, opts = {})}
         
     it "renders correctly" do
-        expect(mail.sender)to eq("sender@gmail.com")
-        expect(mail.recipients)to eq("receiver@gmail.com")
-        expect(mail.subject)to eq("A Subject Title")
-        expect(mail.body)to eq("This is a sentence in the body of the email.")
-        expect(mail.opts)to eq(nil)
+        expect(mail.sender).to eq("sender@gmail.com")
+        expect(mail.recipients).to eq("receiver@gmail.com")
+        expect(mail.subject).to eq("A Subject Title")
+        expect(mail.body).to eq("This is a sentence in the body of the email.")
+        expect(mail.opts).to eq(nil)
     end
 end
     
