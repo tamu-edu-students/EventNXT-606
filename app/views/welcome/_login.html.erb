@@ -1,42 +1,41 @@
-
-<form id='login' class='needs-validation d-flex flex-column' method='post' action='/login' data-controller='form' data-form-redirect-value='/events'>
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= hidden_field_tag :grant_type, 'password' %>
-  <div class='container'>
-    <div class='row mb-2'>
-      <div class='col'>
-        <div class='form-floating'>
-          <input id='login-input-email' class='form-control' data-controller='validation' data-action='focusout->validation#isTextInputValid' data-form-target='bad' type='email' name='email' placeholder='Email' required>
-          <label for='login-input-email'>Email</label>
+<div class="container">
+  <form id='login' class='needs-validation d-flex flex-column' method='post' action='/login' data-controller='form' data-form-redirect-value='/events'>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :grant_type, 'password' %>
+    <div class='container'>
+      <div class='row mb-2'>
+        <div class='col'>
+          <div class='form-floating'>
+            <input id='login-input-email' class='form-control' data-controller='validation' data-action='focusout->validation#isTextInputValid' data-form-target='bad' type='email' name='email' placeholder='Email' required>
+            <label for='login-input-email'>Email</label>
+          </div>
+        </div>
+      </div>
+      <div class='row mb-4'>
+        <div class='col'>
+          <div class='form-floating'>
+            <input id='login-input-password' class='form-control' type='password' name='password' placeholder='Password' required>
+            <label for='login-input-password'>Password</label>
+          </div>
+        </div>
+      </div>
+      <div class='row mb-4 ps-4 pe-4'>
+        <div class='col'>
+          <input type='checkbox' name='remember_me'>
+          <label for='remember_me'>Remember me</label>
+        </div>
+        <div class='col'>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col'>
+          <p class='m-0 text-start'><a href='/?register'>Create account.</a></p>
+        </div>
+        <div class='col'>
+          <button class='w-100 btn btn-primary' type='submit' form='login' name='commit' data-action='click->form#submitSaveLocal'>Log in</button>
         </div>
       </div>
     </div>
-    <div class='row mb-4'>
-      <div class='col'>
-        <div class='form-floating'>
-          <input id='login-input-password' class='form-control' type='password' name='password' placeholder='Password' required>
-          <label for='login-input-password'>Password</label>
-        </div>
-      </div>
-    </div>
-    <div class='row mb-4 ps-4 pe-4'>
-      <div class='col'>
-        <input type='checkbox' name='remember_me'>
-        <label for='remember_me'>Remember me</label>
-      </div>
-      <div class='col'>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='col'>
-        <p class='m-0 text-start'><a href='/?register'>Create account.</a></p>
-      </div>
-      <div class='col'>
-        <button class='w-100 btn btn-primary' type='submit' form='login' name='commit' data-action='click->form#submitSaveLocal'>Log in</button>
-      </div>
-    </div>
-  </div>
-</form>
-
-
+  </form>
+</div>
 <%# hello %>
