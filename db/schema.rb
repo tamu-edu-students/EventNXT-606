@@ -11,14 +11,11 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -37,13 +34,13 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "boxoffice_headers", force: :cascade do |t|
-    t.bigint "event_id", null: false
+    t.integer "event_id", null: false
     t.integer "header_row"
     t.integer "first_name"
     t.integer "last_name"
@@ -54,15 +51,15 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
   end
 
   create_table "boxoffice_seats", force: :cascade do |t|
-    t.bigint "event_id", null: false
+    t.integer "event_id", null: false
     t.string "seat_section"
     t.integer "booked_count"
     t.index ["event_id"], name: "index_boxoffice_seats_on_event_id"
   end
 
   create_table "email_templates", force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "event_id", null: false
+    t.integer "user_id", null: false
     t.string "name", null: false
     t.string "subject"
     t.string "body"
@@ -78,22 +75,22 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
     t.string "address", null: false
     t.datetime "datetime", precision: nil, null: false
     t.string "description"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "guest_referral_rewards", force: :cascade do |t|
-    t.bigint "guest_id", null: false
-    t.bigint "referral_reward_id", null: false
+    t.integer "guest_id", null: false
+    t.integer "referral_reward_id", null: false
     t.integer "count", default: 0
     t.index ["guest_id"], name: "index_guest_referral_rewards_on_guest_id"
     t.index ["referral_reward_id"], name: "index_guest_referral_rewards_on_referral_reward_id"
   end
 
   create_table "guest_referrals", force: :cascade do |t|
-    t.bigint "guest_id", null: false
+    t.integer "guest_id", null: false
     t.string "email", null: false
     t.boolean "counted", default: false, null: false
     t.index ["email"], name: "index_guest_referrals_on_email"
@@ -101,8 +98,8 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
   end
 
   create_table "guest_seat_tickets", force: :cascade do |t|
-    t.bigint "guest_id", null: false
-    t.bigint "seat_id", null: false
+    t.integer "guest_id", null: false
+    t.integer "seat_id", null: false
     t.integer "committed"
     t.integer "allotted", default: 0
     t.index ["guest_id", "seat_id"], name: "index_guest_seat_tickets_on_guest_id_and_seat_id", unique: true
@@ -111,8 +108,8 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
   end
 
   create_table "guests", force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "added_by", null: false
+    t.integer "event_id", null: false
+    t.integer "added_by", null: false
     t.string "email", null: false
     t.string "first_name"
     t.string "last_name"
@@ -124,6 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
     t.datetime "invited_at", precision: nil
     t.datetime "emailed_at", precision: nil
     t.boolean "checked", default: false
+    t.integer "guestcommitted"
     t.string "perks"
     t.string "comments"
     t.index ["added_by"], name: "index_guests_on_added_by"
@@ -132,8 +130,8 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
-    t.bigint "resource_owner_id", null: false
-    t.bigint "application_id", null: false
+    t.integer "resource_owner_id", null: false
+    t.integer "application_id", null: false
     t.string "token", null: false
     t.integer "expires_in", null: false
     t.text "redirect_uri", null: false
@@ -146,8 +144,8 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
   end
 
   create_table "oauth_access_tokens", force: :cascade do |t|
-    t.bigint "resource_owner_id"
-    t.bigint "application_id", null: false
+    t.integer "resource_owner_id"
+    t.integer "application_id", null: false
     t.string "token", null: false
     t.string "refresh_token"
     t.integer "expires_in"
@@ -174,15 +172,15 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
   end
 
   create_table "referral_rewards", force: :cascade do |t|
-    t.bigint "event_id", null: false
+    t.integer "event_id", null: false
     t.string "reward"
     t.integer "min_count", default: 0
     t.index ["event_id"], name: "index_referral_rewards_on_event_id"
   end
 
   create_table "sale_tickets", force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "event_id", null: false
+    t.integer "user_id", null: false
     t.string "email"
     t.string "first_name"
     t.string "last_name"
@@ -202,7 +200,7 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
   end
 
   create_table "seats", force: :cascade do |t|
-    t.bigint "event_id", null: false
+    t.integer "event_id", null: false
     t.string "category", null: false
     t.integer "total_count"
     t.float "price"

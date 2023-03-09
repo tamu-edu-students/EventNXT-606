@@ -28,7 +28,7 @@ group :development, :test do
   gem "cucumber-rails", require: false
   gem "capybara"
   gem "simplecov"
-
+  gem "sqlite3", "~> 1.6"
   gem "byebug"
   gem "database_cleaner", "~> 2.0.0"
   gem "faker", "~> 2.20.0"
