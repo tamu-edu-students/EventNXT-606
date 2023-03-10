@@ -1,0 +1,35 @@
+git clone git@github.com:tamu-edu-students/EventNXT-606.git
+cd EventNXT-606/
+rbenv local 3.1.2
+bundle config set --local without 'production'
+# fix Gemfile to move pg into production group and add gem 'sqlite3', '~> 1.6' to dev&test group
+# fix database.yml to make dev and test use sqlite3
+bundle install
+# delete all the old credentials in config/credentials/*
+# delete credentials.yml and credentials.yml.enc and master.key.gpg
+# comment out lines 38-39 in config/application.rb
+EDITOR="nano" rails credentials:edit
+# ctrl+x to exit
+EDITOR="nano" rails credentials:edit --environment development
+# add email:\n user_name:\n password:\n
+# add admin:\n email:\n password:\n
+# ctrl+o to save
+# ctrl+x to exit
+EDITOR="nano" rails credentials:edit --environment test
+# do the same thing as for development
+# uncomment lines 38-39 in config/application.rb
+rails db:migrate
+rails db:seed
+rails server
+
+docker-compose up -d --build
+docker-compose run rails rake db:create db:migrate db:seed
+
+#Heroku:
+#Add gem 'puma','~>5.2'
+#comment all the credential files in .gitignore when pushing to heroku
+git push heroku master
+heroku run bin/rake db:migrate
+heroku run bin/rake db:seed
+ heroku run bundle exec rails server 
+
