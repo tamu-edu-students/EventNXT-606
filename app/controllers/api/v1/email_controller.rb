@@ -84,7 +84,7 @@ class Api::V1::EmailController < Api::V1::ApiController
       outbox = gen_email(
         senders, guests, params[:subject], params[:body], attachments: attachments)
     end
-    outbox.each { |mail| mail.deliver_later }
+    outbox.each { |mail| mail.deliver_now }
 
     render json: guests, only: [:email]
   end
