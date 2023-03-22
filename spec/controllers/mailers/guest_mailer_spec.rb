@@ -19,7 +19,7 @@ RSpec.describe GuestMailer, type: :mailer do
     end
   end
 
-  describe "referral_email" do
+  describe "referral_email" do # add iteration 2 spring 2023
     let(:event){create(:event)}
     let(:guest){create(:guest)}
     let(:mail){ GuestMailer.referral_email(event,guest)}
@@ -37,7 +37,7 @@ RSpec.describe GuestMailer, type: :mailer do
     
   end
 
-  describe "purchase_tickets_email" do
+  describe "purchase_tickets_email" do #added iteration 2 spring 2023
     let(:event){create(:event)}
     let(:guest){create(:guest)}
     let(:mail){ GuestMailer.purchase_tickets_email(referral_email, event, guest)}
@@ -55,7 +55,7 @@ RSpec.describe GuestMailer, type: :mailer do
    
   end
 
-  describe "rsvp_confirmation_email" do
+  describe "rsvp_confirmation_email" do #added iteration 2 spring 2023
     let(:event){create(:event)}
     let(:guest){create(:guest)}
     let(:mail){ GuestMailer.rsvp_confirmation_email(event,guest)}
@@ -71,7 +71,7 @@ RSpec.describe GuestMailer, type: :mailer do
     end
   end
 
-  describe "rsvp_guest_count_email" do
+  describe "rsvp_guest_count_email" do #added iteration 2 spring 2023
     let(:event){create(:event)}
     let(:guest){create(:guest)}
     let(:mail){ GuestMailer.rsvp_guest_count_email(event,guest)}
