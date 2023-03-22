@@ -20,7 +20,7 @@ RSpec.describe GenericMailer, type: :mailer do
 end
 
 
-    describe "mailer" do 
+    describe "mailer" do #iteration 2 Spring 2023
         let!(:sender) {sender.create("sender@gmail.com")}
         let!(:recipients) {recipients.create("receiver@gmail.com")}
         let!(:subject) {subject.create("A Subject Title")}
