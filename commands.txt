@@ -28,6 +28,7 @@ docker-compose run rails rake db:create db:migrate db:seed
 #Heroku:
 #Add gem 'puma','~>5.2'
 #comment all the credential files in .gitignore when pushing to heroku
+heroku git:remote -a eventnxt-606
 git push heroku master
 heroku run bin/rake db:migrate
 heroku run bin/rake db:seed
