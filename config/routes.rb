@@ -66,7 +66,9 @@ Rails.application.routes.draw do
           end
         end
         resources :sale_tickets
-        resources :boxoffice_headers
+        resources :boxoffice_headers, only: [:index] do
+      get :header_names, on: :collection
+    end
         resources :email_templates, path: :templates
         resources :referral_rewards, path: :rewards
         resources :referral_summary, only: [:index]
