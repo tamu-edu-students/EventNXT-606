@@ -22,13 +22,14 @@ class SeatingTypesController < ApplicationController
   # POST /seating_types or /seating_types.json
   def create
     #render json: {params: seating_type_params}
+    @event = Event.find(params[:event_id])
     @seating_type = Seat.new(seating_type_params)
     @seating_type.price = 21
+    @seating_type.event_id = @event.id
     #render json: {seating_type: seating_type}
     #@seating_type.event_id = 1
     #@seating_type.balance_seats=@seating_type.total_seat_count - @seating_type.vip_seat_count - @seating_type.box_office_seat_count
 
-    #respond_to do |format|
     if @seating_type.save
       #format.html { redirect_to @seating_type, notice: "Seating type created !" }
       #format.json { render :show, status: :created, location: @seating_type }
@@ -36,8 +37,7 @@ class SeatingTypesController < ApplicationController
     else
       format.html { render :new, status: :unprocessable_entity }
       format.json { render json: @seating_type.errors, status: :unprocessable_entity }
-    end
-    #end
+      end
   end
 
   # PATCH/PUT /seating_types/1 or /seating_types/1.json
@@ -73,7 +73,8 @@ class SeatingTypesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def seating_type_params
-      #params.require(:seating_type).permit(:seat_category, :total_seat_count, :vip_seat_count, :box_office_seat_count, :balance_seats, :event_id)
-      params.permit(:category, :total_count, :event_id, :price)
+      # params.permit(:category, :total_count, :event_id, :price)
+      params.require(:seat).permit(:category, :total_count)
+
     end
 end
