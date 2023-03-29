@@ -21,18 +21,13 @@ class SeatingTypesController < ApplicationController
 
   # POST /seating_types or /seating_types.json
   def create
-    #render json: {params: seating_type_params}
     @event = Event.find(params[:event_id])
     @seating_type = Seat.new(seating_type_params)
     @seating_type.price = 21
     @seating_type.event_id = @event.id
-    #render json: {seating_type: seating_type}
-    #@seating_type.event_id = 1
-    #@seating_type.balance_seats=@seating_type.total_seat_count - @seating_type.vip_seat_count - @seating_type.box_office_seat_count
+
 
     if @seating_type.save
-      #format.html { redirect_to @seating_type, notice: "Seating type created !" }
-      #format.json { render :show, status: :created, location: @seating_type }
       redirect_to event_path(@seating_type.event_id)
     else
       format.html { render :new, status: :unprocessable_entity }
