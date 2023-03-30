@@ -1,6 +1,12 @@
 // Sassy
-@import 'bootstrap';
-@import 'welcome';
+@import "bootstrap";
+@import "welcome";
+
+// mdbootstrap
+/*
+ *= require mdbootstrap/css/bootstrap.min
+ *= require mdbootstrap/css/mdb.min
+ */
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
 .paginate-button {
@@ -9,7 +15,12 @@
   border-style: solid;
 }
 
-.paginate-number{
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.paginate-number {
   align-items: center;
   vertical-align: middle;
   justify-content: end;
@@ -33,48 +44,64 @@
 }
 
 div.paleBlueRows {
-    font-family: "Times New Roman", Times, serif;
-    border: 1px solid #FFFFFF;
-    width: 100%;
-    text-align: center;
-    border-collapse: collapse;
-  }
-  .divTable.paleBlueRows .divTableCell, .divTable.paleBlueRows .divTableHead {
-    border: 1px solid #FFFFFF;
-    padding: 3px 2px;
-  }
-  .divTable.paleBlueRows .divTableBody .divTableCell {
-    font-size: 13px;
-  }
-  .divTableBody .Add {
-    background: #EEEEEE;
-  }
-  .divTable.paleBlueRows .divTableRow:nth-child(even) {
-    background: #D0E4F5;
-  }
-  .divTable.paleBlueRows .divTableHeading {
-    background: #0B6FA4;
-    border-bottom: 5px solid #FFFFFF;
-  }
-  .divTable.paleBlueRows .divTableHeading .divTableHead {
-    font-size: 17px;
-    font-weight: bold;
-    color: #FFFFFF;
-    text-align: center;
-    border-left: 2px solid #FFFFFF;
-  }
-  .divTable.paleBlueRows .divTableHeading .divTableHead:first-child {
-    border-left: none;
-  }
-  
-  .paleBlueRows .tableFootStyle {
-    font-size: 14px;
-  }
-  /* DivTable.com */
-  .divTable{ display: table; }
-  .divTableRow { display: table-row; }
-  .divTableHeading { display: table-header-group;}
-  .divTableCell, .divTableHead { display: table-cell;}
-  .divTableHeading { display: table-header-group;}
-  .divTableFoot { display: table-footer-group;}
-  .divTableBody { display: table-row-group;}
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid #ffffff;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+.divTable.paleBlueRows .divTableCell,
+.divTable.paleBlueRows .divTableHead {
+  border: 1px solid #ffffff;
+  padding: 3px 2px;
+}
+.divTable.paleBlueRows .divTableBody .divTableCell {
+  font-size: 13px;
+}
+.divTableBody .Add {
+  background: #eeeeee;
+}
+.divTable.paleBlueRows .divTableRow:nth-child(even) {
+  background: #d0e4f5;
+}
+.divTable.paleBlueRows .divTableHeading {
+  background: #0b6fa4;
+  border-bottom: 5px solid #ffffff;
+}
+.divTable.paleBlueRows .divTableHeading .divTableHead {
+  font-size: 17px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  border-left: 2px solid #ffffff;
+}
+.divTable.paleBlueRows .divTableHeading .divTableHead:first-child {
+  border-left: none;
+}
+
+.paleBlueRows .tableFootStyle {
+  font-size: 14px;
+}
+/* DivTable.com */
+.divTable {
+  display: table;
+}
+.divTableRow {
+  display: table-row;
+}
+.divTableHeading {
+  display: table-header-group;
+}
+.divTableCell,
+.divTableHead {
+  display: table-cell;
+}
+.divTableHeading {
+  display: table-header-group;
+}
+.divTableFoot {
+  display: table-footer-group;
+}
+.divTableBody {
+  display: table-row-group;
+}

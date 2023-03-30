@@ -1,6 +1,13 @@
-<div class="divTableCell"><%= seat.category %></div>
-<div class="divTableCell"><%= seat.total_count %></div>
-<div class="divTableCell">
-  <%= link_to('Edit', edit_seat_path(seat), remote: true)%>
-  <%= link_to('Destroy', seat, method: :delete, data: { confirm: 'Are you sure?'}) %>
-</div>
+<style>
+  .seat-category, .seat-total-count {
+    font-size: 1.2em;
+  }
+</style>
+<tr>
+  <td class="seat-category lead"><%= seat.category %></td>
+  <td class="seat-total-count lead fw-bold"><%= seat.total_count %></td>
+  <td>
+    <%= link_to('Edit', edit_seat_path(seat), class: 'btn btn-light lead', remote: true)%>
+    <%= link_to('Delete', seat, class: 'btn btn-danger lead fw-bold', method: :delete, data: { confirm: 'Are you sure?'}) %>
+  </td>
+</tr>
