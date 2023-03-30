@@ -1,53 +1,65 @@
-<form id='register' class='needs-validation vh-50 d-flex flex-column' method='post' action='/register' data-controller='form' data-form-redirect-value='/'>
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <div class='container'>
-    <div class='row mb-2'>
-      <div class='col'>
-        <div class='form-floating'>
-          <input id='register-input-fn' class='form-control' data-controller='validation' data-action='focusout->validation#isTextInputValid' type='text' name='user[first_name]' placeholder='First Name' required>
-          <label for='register-input-fn'>First Name</label>
-        </div>
-      </div>
-      <div class='col'>
-        <div class='form-floating'>
-          <input id='register-input-ln' class='form-control' data-controller='validation' data-action='focusout->validation#isTextInputValid' type='text' name='user[last_name]' placeholder='Last Name' required>
-          <label for='register-input-ln'>Last Name</label>
-        </div>
-      </div>
-    </div>
-    <div class='row mb-2'>
-      <div class='col'>
-        <div class='form-floating'>
-          <input id='register-input-email' class='form-control' data-controller='validation' data-action='focusout->validation#isTextInputValid' type='email' name='user[email]' placeholder='Email' required>
-          <label for='register-input-email'>Email</label>
-        </div>
-      </div>
-    </div>
-    <div data-controller='validation'>
-      <div class='row mb-2'>
-        <div class='col'>
-          <div class='form-floating'>
-            <input id='register-input-password' class='form-control' data-validation-target='target' data-action='focusout->validation#isTextMatching' type='password' name='user[password]' placeholder='Password' required>
-            <label for='register-input-password'>Password</label>
+
+  <div class="row align-items-center g-lg-5">
+    <div class="mx-auto col-lg-6">
+      <h1 class="display-4 fw-bold mt-0 mb-3 text-center">Create an account</h1>
+      <div id='forms' class='w-75 m-auto p-4 border border-dark border-1 rounded rounded-1 carousel mt-5 mb-5' data-bs-interval=0>
+        <form id='register' class='needs-validation vh-50 d-flex flex-column' method='post' action='/register' data-controller='form' data-form-redirect-value='/'>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <div class='container'>
+            <div class='row mb-2'>
+              <div class='col'>
+                <div class='form-floating'>
+                  <input id='register-input-fn' class='form-control' data-controller='validation' data-action='focusout->validation#isTextInputValid' type='text' name='user[first_name]' placeholder='First Name' required>
+                  <label for='register-input-fn'>First Name</label>
+                </div>
+              </div>
+              <div class='col'>
+                <div class='form-floating'>
+                  <input id='register-input-ln' class='form-control' data-controller='validation' data-action='focusout->validation#isTextInputValid' type='text' name='user[last_name]' placeholder='Last Name' required>
+                  <label for='register-input-ln'>Last Name</label>
+                </div>
+              </div>
+            </div>
+            <div class='row mb-2'>
+              <div class='col'>
+                <div class='form-floating'>
+                  <input id='register-input-email' class='form-control' data-controller='validation' data-action='focusout->validation#isTextInputValid' type='email' name='user[email]' placeholder='Email' required>
+                  <label for='register-input-email'>Email</label>
+                </div>
+              </div>
+            </div>
+            <div data-controller='validation'>
+              <div class='row mb-2'>
+                <div class='col'>
+                  <div class='form-floating'>
+                    <input id='register-input-password' class='form-control' data-validation-target='target' data-action='focusout->validation#isTextMatching' type='password' name='user[password]' placeholder='Password' required>
+                    <label for='register-input-password'>Password</label>
+                  </div>
+                </div>
+              </div>
+              <div class='row mb-4'>
+                <div class='col'>
+                  <div class='form-floating'>
+                    <input id='register-input-confirm-password' class='form-control' data-validation-target='subject' data-action='focusout->validation#isTextMatching' type='password' name='user[password_confirmation]]' placeholder='Password' required>
+                    <label for='register-input-confirm-password'>Confirm password</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col'>
+                <p class='m-0 text-start'><a href='/'><i class="me-2 bi bi-arrow-left"></i>Back to login.</a></p>
+              </div>
+              <div class='col'>
+                <button class='w-100 btn btn-primary' type='submit' form='register' name='commit' data-action='click->form#submitForm'>Create</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class='row mb-4'>
-        <div class='col'>
-          <div class='form-floating'>
-            <input id='register-input-confirm-password' class='form-control' data-validation-target='subject' data-action='focusout->validation#isTextMatching' type='password' name='user[password_confirmation]]' placeholder='Password' required>
-            <label for='register-input-confirm-password'>Confirm password</label>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
-    <div class='row'>
-      <div class='col'>
-        <p class='m-0 text-start'><a href='/'><i class="me-2 bi bi-arrow-left"></i>Back to login.</a></p>
-      </div>
-      <div class='col'>
-        <button class='w-100 btn btn-primary' type='submit' form='register' name='commit' data-action='click->form#submitForm'>Create</button>
-      </div>
+    <div class="col-lg-6">
+      <img src="https://images.unsplash.com/photo-1569930784237-ea65a2f40a83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fGV2ZW50fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Your Image Description" class="img-fluid w-100 shadow">
     </div>
   </div>
-</form>
+<%# </div> %>

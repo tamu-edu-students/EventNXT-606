@@ -1,28 +1,27 @@
 <% content_for :nav do %>
   <%= render 'layouts/nav' %>
 <% end %>
-
 <style>
-    body {
-    
-      //background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://www.teahub.io/photos/full/197-1977791_portland-wallpapers-hd-portland-oregon-city-view.jpg);
-      background-repeat: no-repeat; 
-      background-position: center;
-      background-attachment: fixed; 
-      webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-      height:100%;
-      width:100%; 
-      
-    }
+  /* body {
 
-    section{
-      padding: 40px;
-      padding-bottom: 100vh;
-      background-color: white;
-    }
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(https://www.teahub.io/photos/full/197-1977791_portland-wallpapers-hd-portland-oregon-city-view.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:100%;
+    width:100%;
+
+  } */
+
+  section{
+    padding: 40px;
+    padding-bottom: 100vh;
+    background-color: white;
+  }
 
   h3{
   text-align: center;
@@ -44,12 +43,12 @@
   }
 
   #referral-contents-toggle{
-    display: none; 
-    text-align: center; 
-    padding-top: 10px; 
-    padding-bottom: 20px; 
+    display: none;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
     background-color: #e6ccff;
-    color: black; 
+    color: black;
     border-radius: 10px;
     padding: 10px;
   }
@@ -60,147 +59,165 @@
   table, th, td {
     border: 1px solid black;
   }
-  th, td {
+  /* th, td {
     padding: 5px;
     #width: 209.8px;
-  }
+  } */
 
   th.value input{
     width: 100%
   }
+
+  .seating-levels-columns {
+    font-size: 1.45rem; /* Adjust this value as needed */
+  }
+
+  .tbody tr {
+    font-size: 1.45rem; /* Adjust this value as needed */
+  }
+  .table {
+    border-radius: 17px;
+  }
 </style>
-
 <script>
-/JS toggles RSVP Form visibility
-  function toggle_referral() {
-  var button_name = document.getElementById("referral-prepper");
-  var x = document.getElementById("referral-contents-toggle");
-  if (button_name.innerHTML == "Open Referral Reward Template") {
-    button_name.innerHTML = "Close Referral Reward Template";
-    x.style.display = "block";
-  } else {
-    button_name.innerHTML = "Open Referral Reward Template";
-    button_name.style.background = "lightgreen";
-    x.style.display = "none";
-  }
-}/
-
-  function guest_table_toggle() {
-    var button_name = document.getElementById("guest-list-table-toggle");
-    var x = document.getElementById("guest-list-table");
-    if(button_name.innerHTML == "Guest-List Table") {
-      button_name.innerHTML = "Close Guest-List Table";
+    function toggle_referral() {
+    var button_name = document.getElementById("referral-prepper");
+    var x = document.getElementById("referral-contents-toggle");
+    if (button_name.innerHTML == "Open Referral Reward Template") {
+      button_name.innerHTML = "Close Referral Reward Template";
       x.style.display = "block";
     } else {
-      button_name.innerHTML = "Guest-List Table";
+      button_name.innerHTML = "Open Referral Reward Template";
+      button_name.style.background = "lightgreen";
       x.style.display = "none";
     }
   }
 
-  function referral_table_toggle() {
-    var button_name = document.getElementById("referral-table-toggle");
-    var x = document.getElementById("referral-table");
-    if(button_name.innerHTML == "Referral Table") {
-      button_name.innerHTML = "Close Referral Table";
+    function guest_table_toggle() {
+      var button_name = document.getElementById("guest-list-table-toggle");
+      var x = document.getElementById("guest-list-table");
+      if(button_name.innerHTML == "Guest-List Table") {
+        button_name.innerHTML = "Close Guest-List Table";
+        x.style.display = "block";
+      } else {
+        button_name.innerHTML = "Guest-List Table";
+        x.style.display = "none";
+      }
+    }
+
+    function referral_table_toggle() {
+      var button_name = document.getElementById("referral-table-toggle");
+      var x = document.getElementById("referral-table");
+      if(button_name.innerHTML == "Referral Table") {
+        button_name.innerHTML = "Close Referral Table";
+        x.style.display = "block";
+      } else {
+        button_name.innerHTML = "Referral Table";
+        x.style.display = "none";
+      }
+    }
+
+    function seating_table_toggle() {
+    var button_name = document.getElementById("seating-table-toggle");
+    var x = document.getElementById("seating-table");
+    if(button_name.innerHTML == "Seating Levels") {
+      button_name.innerHTML = "Close Seating Levels";
       x.style.display = "block";
     } else {
-      button_name.innerHTML = "Referral Table";
+      button_name.innerHTML = "Seating Levels";
       x.style.display = "none";
     }
   }
 
-  function seating_table_toggle() {
-  var button_name = document.getElementById("seating-table-toggle");
-  var x = document.getElementById("seating-table");
-  if(button_name.innerHTML == "Seating Levels") {
-    button_name.innerHTML = "Close Seating Levels";
-    x.style.display = "block";
-  } else {
-    button_name.innerHTML = "Seating Levels";
-    x.style.display = "none";
-  }
-}
+  function refresh() {
+    // or $('#myform')[0] with jQuery
+    $("#reward-msg").load(location.href + " #reward-msg");
 
-function refresh() {
-  // or $('#myform')[0] with jQuery
-  $("#reward-msg").load(location.href + " #reward-msg");
-  
-}
+  }
 </script>
-
-<h1><%= @event.title %></h1>
-<div id='event-summary' class='mb-4'>
-  <div class='d-flex justify-content-start'>
-    <% if @event.image.attached? %>
-    <img class='w-25 me-2' src='<%= url_for(@event.image) %>' alt='Event image'>
-    <% end %>
-
-    <div>
-      <p>Event Date: <%=@event.datetime %></p> <!-- format this to look nicer -->
-      <p>Address: <%=@event.address %></p> <!-- <p><b>Event Address: 1255 NW 9th Ave, Portland, OR 97209</b></p> Example of what addr should look like--> 
-      <p>Description: <%=@event.description %></p>
+<%# event detail into section %>
+<div class="container col-xxl-8 px-4 py-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <% if @event.image.attached? %>
+        <img class="d-block mx-lg-auto img-fluid w-100 rounded shadow" src='<%= url_for(@event.image) %>' alt='Event image' width="700" height="500" loading="lazy">
+      <% end %>
     </div>
-
-    <div data-controller='update dynamic' data-update-url-value='/api/v1/events' data-action='update:updated->dynamic#reload'>
-      <%= render 'form' %>
+    <div class="col-lg-6 col-sm-12">
+      <h1 class="display-5 fw-bold lh-1 mb-4"><%= @event.title %></h1>
+      <p class="lead"><strong>Event Date: </strong><%=@event.datetime %></p>
+      <!-- format this to look nicer -->
+      <p class="lead"><strong>Address:</strong> <%=@event.address %></p>
+      <!-- <p><b>Event Address: 1255 NW 9th Ave, Portland, OR 97209</b></p> Example of what addr should look like-->
+      <p class="lead"><strong>Description: </strong><%=@event.description %></p>
+      <div data-controller='update dynamic' data-update-url-value='/api/v1/events' data-action='update:updated->dynamic#reload'>
+        <%= render 'form' %>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <div class='d-flex mt-2'>
+          <button class='btn btn-primary me-2 btn-lg px-4 me-md-2' data-bs-toggle="modal" data-bs-target="#event-modal">Edit Event</button>
+          <%= button_to "Delete Event", @event, :method => :delete, data: {confirm: "Are you sure you want to delete this event?"}, class: 'btn btn-danger btn-lg px-4 me-md-2' %>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class='d-flex mt-2'>
-    <button class='btn btn-primary me-2' data-bs-toggle="modal" data-bs-target="#event-modal">Edit Event</button>
-    <%= button_to "Delete Event", @event, :method => :delete, data: {confirm: "Are you sure you want to delete this event?"}, class: 'btn btn-danger' %>
   </div>
 </div>
-
+<%# end of event detail intro section %>
 <script>
-var eventModal = document.getElementById('event-modal')
-var updateButton = eventModal.querySelector('button[type="submit"]')
-eventModal.addEventListener('show.bs.modal', function (event) {
-  var button = event.relatedTarget
-  eventModal.querySelector('.modal-title').textContent = "Update Event"
-  eventModal.querySelector('button[type="submit"]').textContent = "Update"
-  eventModal.querySelector('input[data-nxt-id]').setAttribute('data-nxt-id', "<%= @event.id %>")
-  eventModal.querySelector('input[data-nxt-id]').value = "<%= @event.id %>"
-  eventModal.querySelector('#event-name').value = "<%= @event.title %>"
-  eventModal.querySelector('#event-address').value = "<%= @event.address %>"
-  eventModal.querySelector('#event-description').value = "<%= @event.description %>"
-  eventModal.querySelector('#event-datetime').value = (new Date("<%= @event.datetime.to_fs(:iso8601) %>")).toISOString().slice(0,16)
-})
+  var eventModal = document.getElementById('event-modal')
+  var updateButton = eventModal.querySelector('button[type="submit"]')
+  eventModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget
+    eventModal.querySelector('.modal-title').textContent = "Update Event"
+    eventModal.querySelector('button[type="submit"]').textContent = "Update"
+    eventModal.querySelector('input[data-nxt-id]').setAttribute('data-nxt-id', "<%= @event.id %>")
+    eventModal.querySelector('input[data-nxt-id]').value = "<%= @event.id %>"
+    eventModal.querySelector('#event-name').value = "<%= @event.title %>"
+    eventModal.querySelector('#event-address').value = "<%= @event.address %>"
+    eventModal.querySelector('#event-description').value = "<%= @event.description %>"
+    eventModal.querySelector('#event-datetime').value = (new Date("<%= @event.datetime.to_fs(:iso8601) %>")).toISOString().slice(0,16)
+  })
 </script>
-
-<h2>Manage Seating Levels</h2>
-<div class="divTable paleBlueRows">
-  <div class="divTableHeading">
-    <div class="divTableRow">
-      <div class="divTableHead">Category</div>
-      <div class="divTableHead">Total Count</div>
-      <div class="divTableHead">Actions</div>
-    </div>
-  </div>
-  
-  <div class="divTableBody" >
-    <% @seats.each do |seat| %>
-      <%= content_tag :div, class: 'divTableRow', id: dom_id(seat) do %>
-        <%= render seat %>
+<%# Manage Seating Levels %>
+<div class="container">
+  <h1 class="display-5 fw-bold lh-1 mb-4 text-center">Manage Seating Levels</h1>
+  <table class="table table-dark table-striped table-hover shadow-lg">
+    <thead class="seating-levels-columns">
+      <tr>
+        <th>Category</th>
+        <th>Total Count</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @seats.each do |seat| %>
+        <% Rails.logger.info "Seat id: #{seat.id}, category: #{seat.category}" %>
+        <%= content_tag :div, class: 'tr', id: dom_id(seat) do %>
+          <%= render seat %>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-  <form id='form-seat' class="divTableBody" method="post" action="/events/<%= @event.id %>/seating_types">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <div class='divTableRow'>
-      <div class="divTableCell Add">
-        <input type="text" name="category">
-      </div>
-      <div class="divTableCell Add">
-        <input type="number" name="total_count">
-      </div>
-      <div class="divTableCell Add">
-        <button type="submit" value="submit" form='form-seat' class="btn btn-primary">+</button>
-      </div>
-    </div>
-  </form>
-</div> 
+    </tbody>
+    <tfoot>
+      <tr>
+        <%= form_with url: event_seating_types_path(@event), local: true do |form| %>
+          <td>
+            <%= form.label :category, 'Category', class: 'lead fw-bold'%>
+            <%= form.text_field :category, name: 'seat[category]', class: 'form-control lead fw-bold', required: true %>
+          </td>
+          <td>
+            <%= form.label :total_count, 'Total Count', class: "form-label-input lead fw-bold"%>
+            <%= form.number_field :total_count, name: 'seat[total_count]', class: 'form-control fw-bold', required: true %>
+          </td>
+          <td>
+            <%= form.submit 'Add', class: 'btn btn-info text-white fw-bold' %>
+          </td>
+        <% end %>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<%# end of manage seating levels %>
 <br>
-
 <h4> Box Office Seating </h4>
 <div id='boxoffice-seating' class='mb-4'>
   <table class="center">
@@ -210,15 +227,14 @@ eventModal.addEventListener('show.bs.modal', function (event) {
     </tr>
     <tbody>
       <% @boxoffice_seats.each do |result| %>
-        </tr>
-          <th width=199.8><%= result.seat_section %></th>
-          <th width=199.8><%= result.booked_count %></th>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </tr>
+      <th width=199.8><%= result.seat_section %></th>
+      <th width=199.8><%= result.booked_count %></th>
+    </tr>
+  <% end %>
+</tbody>
+</table>
 </div>
-      
 <h4> Seating Summary Information </h4>
 <div id='seating-summary' class='mb-4'>
   <table class="center">
@@ -229,9 +245,7 @@ eventModal.addEventListener('show.bs.modal', function (event) {
       <th width=199.8>Total Committed</th>
       <th width=199.8>Total Sold</th>
       <th width=199.8>Free Seats</th>
-      
-     
-<!--       <th width=199.8>Balance</th> -->
+      <!--       <th width=199.8>Balance</th> -->
     </tr>
     <tbody>
       <% @res.each do |result| %>
@@ -242,15 +256,13 @@ eventModal.addEventListener('show.bs.modal', function (event) {
           <th width=199.8><%= result.total_committed %></th>
           <th width=199.8><%= result.boxoffice_booked %></th>
           <th width=199.8><%= result.remaining %></th>
-<!--           <th width=199.8><%= result.balance %></th> -->
+          <!--           <th width=199.8><%= result.balance %></th> -->
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
 <!-- button to edit/add guests -->
-
 <h2>Manage Guests</h2>
 <div class='mb-4'>
   <div class='d-flex justify-content-between'>
@@ -269,79 +281,72 @@ eventModal.addEventListener('show.bs.modal', function (event) {
   </div>
   <%= render 'guest_list' %>
 </div>
-
 <h2>Manage Box Office Sales</h2>
 <div class='mb-2'>
   <%= render 'bulk_referral_email' %>
   <span class='ms-2 me-2'></span>
   <%= render 'box_office_data' %>
 </div>
-
 <h2>Manage Referrals</h2>
 <%= render 'referral_table' %>
-
 <script>
-var emailModal = document.getElementById('email-modal')
-emailModal.addEventListener('show.bs.modal', function (event) {
-  var button = event.relatedTarget
-  var recipient = button.getAttribute('data-nxt-email')
-  var modalInput = emailModal.querySelector('#email-to')
-  modalInput.value = recipient
-})
+  var emailModal = document.getElementById('email-modal')
+  emailModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget
+    var recipient = button.getAttribute('data-nxt-email')
+    var modalInput = emailModal.querySelector('#email-to')
+    modalInput.value = recipient
+  })
 </script>
-
 <script>
-var bulkEmailModal = document.getElementById('bulk-email')
-    bulkEmailModal.addEventListener('show.bs.modal', function () {
-      var forms = document.querySelectorAll("[name=guest_display]");
-      var recipients = "";
+  var bulkEmailModal = document.getElementById('bulk-email')
+      bulkEmailModal.addEventListener('show.bs.modal', function () {
+        var forms = document.querySelectorAll("[name=guest_display]");
+        var recipients = "";
 
-       for (var i=0, n=forms.length;i<n;i++) {
-        if (forms[i].elements['guest_selector'].checked) {
-          recipients += forms[i].elements['guest_email'].value+";"
-        }
-       }
-    var bulkModal = document.getElementById('bulk-email')
-    var modalInput = bulkModal.querySelector('#email-to')
-    modalInput.value = recipients
-    })
+         for (var i=0, n=forms.length;i<n;i++) {
+          if (forms[i].elements['guest_selector'].checked) {
+            recipients += forms[i].elements['guest_email'].value+";"
+          }
+         }
+      var bulkModal = document.getElementById('bulk-email')
+      var modalInput = bulkModal.querySelector('#email-to')
+      modalInput.value = recipients
+      })
 </script>
-
 <script>
-var bulkEmailModal = document.getElementById('bulk-referral-email')
-    bulkEmailModal.addEventListener('show.bs.modal', function () {
-      var forms = document.querySelectorAll("[name=boxoffice_display]");
-      var recipients = "";
+  var bulkEmailModal = document.getElementById('bulk-referral-email')
+      bulkEmailModal.addEventListener('show.bs.modal', function () {
+        var forms = document.querySelectorAll("[name=boxoffice_display]");
+        var recipients = "";
 
-       for (var i=0, n=forms.length;i<n;i++) {
-        if (forms[i].elements['boxoffice_selector'].checked) {
-          recipients += forms[i].elements['boxoffice_email'].value+";"
-        }
-       }
-    var bulkModal = document.getElementById('bulk-referral-email')
-    var modalInput = bulkModal.querySelector('#email-to')
-    modalInput.value = recipients
-    })
+         for (var i=0, n=forms.length;i<n;i++) {
+          if (forms[i].elements['boxoffice_selector'].checked) {
+            recipients += forms[i].elements['boxoffice_email'].value+";"
+          }
+         }
+      var bulkModal = document.getElementById('bulk-referral-email')
+      var modalInput = bulkModal.querySelector('#email-to')
+      modalInput.value = recipients
+      })
 </script>
-
 <script>
-var setExpiryModal = document.getElementById('invite-expiry')
-    setExpiryModal.addEventListener('show.bs.modal', function () {
-      var forms = document.querySelectorAll("[name=guest_display]");
-      var recipients = "";
+  var setExpiryModal = document.getElementById('invite-expiry')
+      setExpiryModal.addEventListener('show.bs.modal', function () {
+        var forms = document.querySelectorAll("[name=guest_display]");
+        var recipients = "";
 
-       for (var i=0, n=forms.length;i<n;i++) {
-        if (forms[i].elements['guest_selector'].checked) {
-          recipients += forms[i].elements['guest_email'].value+";"
-        }
-       }
-    var expiryModal = document.getElementById('invite-expiry')
-    var modalInput = expiryModal.querySelector('#set-expiry-to')
-    modalInput.value = recipients
-    console.log(recipients)
-    })
+         for (var i=0, n=forms.length;i<n;i++) {
+          if (forms[i].elements['guest_selector'].checked) {
+            recipients += forms[i].elements['guest_email'].value+";"
+          }
+         }
+      var expiryModal = document.getElementById('invite-expiry')
+      var modalInput = expiryModal.querySelector('#set-expiry-to')
+      modalInput.value = recipients
+      console.log(recipients)
+      })
 </script>
-
 <!--<div id="form-div">
 <h3>Import Box Office Data</h3>
 <%= form_tag import_new_spreadsheet_path, multipart: true  do %> 
@@ -353,7 +358,6 @@ var setExpiryModal = document.getElementById('invite-expiry')
   </div>
 <% end %>
 </div> -->
-
 <!--<h4 class="display-10" style="text-align: center; color: gray;"> Referral Rewards </h1><br><br>
 <div id="referral">
   <div style="text-align: center;" id="center-referral-button">
@@ -387,5 +391,5 @@ var setExpiryModal = document.getElementById('invite-expiry')
     <br><%= button_to "Back to Dashboard", root_path, :class => "btn btn-success btn-rounded", :type => "button", :method => "get" %>
 
 </div>-->
-
-<%= link_to "Back", '/events',  style:"height:40px;width:80px", class:"btn btn-primary" %><br><br>
+<%= link_to "Back", '/events',  style:"height:40px;width:80px", class:"btn btn-primary" %><br>
+<br>

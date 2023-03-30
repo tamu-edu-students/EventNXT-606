@@ -1,17 +1,31 @@
 default: &default
-  adapter: postgresql
+  adapter: sqlite3
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  username: postgres
+  username: sqlite3
   database: db-dev
 
 test:
   <<: *default
-  username: postgres
+  username: sqlite3
   database: db-test
 
 production:
   url: <%= ENV['DATABASE_URL'] %>
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+# development:
+#   <<: *default
+#   adapter: sqlite3
+#   database: db/development.sqlite3
+
+# test:
+#   <<: *default
+#   adapter: sqlite3
+#   database: db/test.sqlite3

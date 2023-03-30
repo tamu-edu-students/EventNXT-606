@@ -4,23 +4,52 @@
   <title>EVENTNXT</title>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/heroes/">
+
   <%= javascript_importmap_tags %>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD15UtHa0mICshgHLTfDPXj8IUCpTCB7MY&libraries=places&callback=initMap" data-turbolinks-eval="false"></script> <!-- GMAP API -->
   <script>window.process = { env: {} }</script>
 </head>
 <body>
+  
   <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
-  <nav class="nav navbar navbar-expand-lg navbar-light justify-content-between" style="background-color: #e6ccff;">
-    <h1 class="title">EVENTNXT</h1>
-    <%= yield :nav %>
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><strong>EventNXT</strong></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        </ul>
+        <div class="btn-group dropstart ">
+          <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >
+            Dropstart
+          </button>
+          <ul class="dropdown-menu">
+            <!-- Dropdown menu links -->
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </nav>
 
-  
-  <main class='d-flex m-auto flex-column w-75'>
+    <main class=''>
     <%# Render "flash" messages in our application. This loads _flash.erb %>
     <%# <%= render 'layouts/flash' %>
     <%= yield %>
   </main>
+  
 </body>
 </html>

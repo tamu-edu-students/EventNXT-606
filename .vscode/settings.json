@@ -1,0 +1,12 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+"[erb]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"files.associations": {
+  "*.erb": "html"
+},
+"prettier.parser": "ruby",
+"prettier.plugins": ["prettier-plugin-ruby"]
+
+}
