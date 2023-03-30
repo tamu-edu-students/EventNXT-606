@@ -46,10 +46,6 @@ group :production do
 
 end
 
-group :production do
-  gem "pg", "~> 1.4.3"
-end  
-
 gem "web-console"
 gem "spring"
 
