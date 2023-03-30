@@ -18,13 +18,12 @@ gem "jbuilder", "~> 2.11.0"
 gem "bootstrap", "~> 5.1"
 gem "terser", "~> 1.1"
 
-gem "pg", "~> 1.4.3"
+gem 'puma', '~> 5.2'
+
 gem "roo", "~> 2.8"
 gem "devise", "~> 4.8.0"
 gem "doorkeeper", "~> 5.5.0"
 gem "rack-cors"
-
-gem 'puma', '~> 5.2'
 
 group :development, :test do
   gem "rspec-rails", "~> 5.0.0"
