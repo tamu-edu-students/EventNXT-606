@@ -17,13 +17,19 @@ gem "jbuilder", "~> 2.11.0"
 
 gem "bootstrap", "~> 5.1"
 gem "terser", "~> 1.1"
+<<<<<<< HEAD
 
 gem 'puma', '~> 5.2'
 
+=======
+gem "pg", "~> 1.4.3"
+>>>>>>> 0b68c2cfc88d3dd93ec6ddc5857672a0cabb71c3
 gem "roo", "~> 2.8"
 gem "devise", "~> 4.8.0"
 gem "doorkeeper", "~> 5.5.0"
 gem "rack-cors"
+
+gem 'puma', '~> 5.2'
 
 group :development, :test do
   gem "rspec-rails", "~> 5.0.0"
@@ -35,8 +41,17 @@ group :development, :test do
   gem "database_cleaner", "~> 2.0.0"
   gem "faker", "~> 2.20.0"
   gem "factory_bot_rails", "~> 6.2.0"
+<<<<<<< HEAD
 
   gem 'sqlite3', '~> 1.6'
+=======
+  
+  gem "sqlite3", "~> 1.6"
+end
+
+group :production do
+  gem "pg", "~> 1.4.3"
+>>>>>>> 0b68c2cfc88d3dd93ec6ddc5857672a0cabb71c3
 end
 
 group :production do
