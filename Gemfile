@@ -3,6 +3,10 @@ source "https://rubygems.org"
 ruby "3.1.2"
 
 gem "rails", "~> 7.0.0"
+<<<<<<< HEAD
+=======
+
+>>>>>>> eventnxt/master
 gem "mustache", "~> 1.1"
 gem "tzinfo-data"
 gem "sprockets-rails"
@@ -16,6 +20,8 @@ gem "jbuilder", "~> 2.11.0"
 
 gem "bootstrap", "~> 5.1"
 gem "terser", "~> 1.1"
+
+gem 'puma', '~> 5.2'
 
 gem "roo", "~> 2.8"
 gem "devise", "~> 4.8.0"
@@ -32,12 +38,21 @@ group :development, :test do
   gem "database_cleaner", "~> 2.0.0"
   gem "faker", "~> 2.20.0"
   gem "factory_bot_rails", "~> 6.2.0"
+<<<<<<< HEAD
   gem "sqlite3", "~> 1.6"
 end
 
 group :production do
   gem "pg", "~> 1.4.3"
+=======
+
+  gem 'sqlite3', '~> 1.6'
+>>>>>>> eventnxt/master
 end
+
+group :production do
+  gem "pg", "~> 1.4.3"
+end  
 
 gem "web-console"
 gem "spring"

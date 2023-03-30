@@ -4,6 +4,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
+<<<<<<< HEAD
   <<: *default
   username: sqlite3
   database: db-dev
@@ -12,6 +13,18 @@ test:
   <<: *default
   username: sqlite3
   database: db-test
+=======
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+>>>>>>> eventnxt/master
 
 production:
   url: <%= ENV['DATABASE_URL'] %>

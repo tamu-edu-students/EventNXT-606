@@ -37,7 +37,7 @@ export default class extends Controller {
         method: "GET",
       }
     }).then(response => response.json())
-      .then(data => {this.mailfrom = data['email'];this.sendfrom();})
+      .then(data => {this.mailfrom = data.email;this.sendfrom();})
       .then(data => console.log(this.mailfrom));
 
   }
