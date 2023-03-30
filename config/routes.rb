@@ -75,6 +75,13 @@ Rails.application.routes.draw do
         resources :seats
       end
     end
+        # to access api/v2/users
+    namespace :v2 do 
+      resources :users, only: [:index, :show, :update, :destroy]
+    end
+    #if your application is hosted at http://example.com 
+    #and endpoint is at api/v2/users, 
+    #you can make a request to http://example.com/api/v2/users to get a list of users.
   end
   
   resources :events do
