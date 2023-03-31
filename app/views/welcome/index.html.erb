@@ -32,7 +32,18 @@
 </style>
 <% if !@register%>
   <div class="container">
-    <div class="container-fluid col-xxl-8 px-4 py-5">
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-info-transparent">
+      <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 fw-bold text-white">EventNXT</h1>
+        <p class="lead fw-bold text-white">Unlock exclusive rewards and discounts by joining EventNXT's Referral Rewards Program, where every friend you invite brings you one step closer to your next unforgettable experience!</p>
+        <a class="btn btn-primary fw-bold" href="#login">Login / Register</a>
+      </div>
+      <div class="product-device shadow-sm d-none d-md-block"></div>
+      <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    </div>
+
+    <div class="container-fluid col-xxl-8 px-0 py-5">
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-10 col-sm-12 col-lg-7">
           <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -58,10 +69,10 @@
           </div>
         </div>
         <div class="col-lg-5">
-          <h1 class="display-5 fw-bold lh-1 mb-3">EventNXT</h1>
-          <p class="lead">At EventNXT, we understand that planning an event is a complex task. Managing guest lists, ticket sales, and RSVPs can be overwhelming and stressful. That's why we have created a comprehensive tool that automates the guest list management process and streamlines ticket sales, so you can focus on planning the perfect event.
+          <!-- <h1 class="display-5 fw-bold lh-1 mb-3">EventNXT</h1> -->
+          <p class="lead ">At <strong>EventNXT</strong>, we understand that planning an event is a complex task. Managing guest lists, ticket sales, and RSVPs can be overwhelming and stressful. That's why we have created a comprehensive tool that automates the guest list management process and streamlines ticket sales, so you can focus on planning the perfect event.
           </p>
-          <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Login</button>
+          <a href="#login"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Login</button></a>
         </div>
       </div>
     </div>
@@ -93,17 +104,8 @@
       </div>
     </section>
     <hr class="my-5" />
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-info-transparent">
-      <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-4 fw-bold text-white">EventNXT</h1>
-        <p class="lead fw-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
-        <a class="btn btn-outline-secondary" href="#">Coming soon</a>
-      </div>
-      <div class="product-device shadow-sm d-none d-md-block"></div>
-      <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-    </div>
   </div>
-  <h1 class="text-center display-5 fw-bold lh-1 mb-5">Login</h1>
+  <h1 class="text-center display-5 fw-bold lh-1 mb-5" id="login">Login</h1>
 <% end %>
 <% if @register %>
   <%= render partial: 'register' %>

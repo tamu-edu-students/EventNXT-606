@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <title>EVENTNXT</title>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/heroes/">
-
+  
   <%= javascript_importmap_tags %>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD15UtHa0mICshgHLTfDPXj8IUCpTCB7MY&libraries=places&callback=initMap" data-turbolinks-eval="false"></script> <!-- GMAP API -->
   <script>window.process = { env: {} }</script>
 </head>
 <body>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--scroll-padding, 100px);
+    }
+
+  </style>
   
   <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
   <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><strong>EventNXT</strong></a>
+      <!-- <a class="navbar-brand" href=""><strong>EventNXT</strong></a> -->
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <strong>EventNXT</strong>
+      <% end %>
+
+    
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="#login">Login</a>
           </li>
+          <li class="nav-item">
+            <%= link_to 'Home', root_path, class: 'nav-link active', aria: { current: 'page' } %>
+          </li>
+          
+          
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
@@ -35,7 +56,8 @@
           </button>
           <ul class="dropdown-menu">
             <!-- Dropdown menu links -->
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#login">Login</a></li>
+
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -45,11 +67,15 @@
     </div>
   </nav>
 
-    <main class=''>
-    <%# Render "flash" messages in our application. This loads _flash.erb %>
-    <%# <%= render 'layouts/flash' %>
+  <main class=''>
+    <!-- <%# Render "flash" messages in our application. This loads _flash.erb %>
+    <%# <%= render 'layouts/flash' %> -->
     <%= yield %>
   </main>
-  
+  <script>
+    const navigationHeight = document.querySelector("nav").offsetHeight;
+    document.documentElement.style.setProperty("--navigation-height", `${navigationHeight}px`);
+    console.log(navigationHeight);
+  </script>
 </body>
 </html>
