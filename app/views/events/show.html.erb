@@ -176,6 +176,7 @@
     eventModal.querySelector('#event-address').value = "<%= @event.address %>"
     eventModal.querySelector('#event-description').value = "<%= @event.description %>"
     eventModal.querySelector('#event-datetime').value = (new Date("<%= @event.datetime.to_fs(:iso8601) %>")).toISOString().slice(0,16)
+    eventModal.querySelector('#event-boxoffice').value = "<%= @event.box_office %>"
   })
 </script>
 <%# Manage Seating Levels %>
