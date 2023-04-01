@@ -45,3 +45,24 @@ end
 Then(/^I should get a successful response$/) do
   expect(page.status_code).to eq(200)
 end
+
+Given(/^I am at "(.*?)"$/) do |url|
+  visit url
+end
+
+When(/^I fill "(.*?)" with "(.*?)"$/) do |field, value|
+  fill_in field, with: value
+end
+
+When(/^I click "(.*?)" button$/) do |button|
+  click_on button
+end
+
+# Then("I should see {string}") do |text|
+#   expect(page).to have_content(text)
+# end
+
+Then(/^I should land on login page$/) do
+  url = "/"
+  visit url
+end
