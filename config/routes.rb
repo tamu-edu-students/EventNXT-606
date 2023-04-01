@@ -57,6 +57,7 @@ Rails.application.routes.draw do
         get '/headers/:id' => 'events#headers'
         get '/dataload/:header/:firstName/:lastName/:email/:seatLevel/:seats' => 'events#dataload'
         resource :guest_referrals, path: :refer, only: [:show, :create]
+        resource :guest_referred_purchase, path: :purchase, only: [:show, :create]
         resources :guests do
           member do
             get :invite
@@ -86,6 +87,7 @@ Rails.application.routes.draw do
   
   resources :events do
     resource :refer
+    resource :purchase
     resource :book
     resources :guests
     resources :seating_types

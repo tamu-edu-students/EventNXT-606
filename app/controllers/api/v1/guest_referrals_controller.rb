@@ -15,14 +15,14 @@ class Api::V1::GuestReferralsController < Api::V1::ApiController
     referral.guest = @guest
     referral.email = params[:email]
 
-    if referral.save
-      head :ok
-      @event = Event.find(@guest.event_id)
-      GuestMailer.purchase_tickets_email(referral.email, @event, @guest).deliver_now
-      #redirect_to @event
-    else
-      render json: referral.errors(), status: :unprocessable_entity
-    end
+    #if referral.save
+    head :ok
+    @event = Event.find(@guest.event_id)
+    GuestMailer.purchase_tickets_email(referral.email, @event, @guest).deliver_now
+    #redirect_to @event
+    #else
+      #render json: referral.errors(), status: :unprocessable_entity
+    #end
   end
   
   private
