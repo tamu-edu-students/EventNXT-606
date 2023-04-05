@@ -101,6 +101,7 @@ module Api::V1::EmailHelper
 
       rsvp_url = "#{request.base_url}/events/#{guest.event.id}/book?token=#{guest.id}"
       refer_url = "#{request.base_url}/events/#{guest.event.id}/refer?token=#{guest.id}"
+      purchase_url = "#{request.base_url}/events/#{guest.event.id}/purchase?token=#{guest.id}"
 
       body = ''
       ActiveStorage::Current.set(host: request.base_url) do
@@ -112,6 +113,7 @@ module Api::V1::EmailHelper
           referral_rewards: guest.event.referral_rewards,
           rsvp_url: rsvp_url,
           refer_url: refer_url,
+          purchase_url: purchase_url,
           links: links)
       end
 
