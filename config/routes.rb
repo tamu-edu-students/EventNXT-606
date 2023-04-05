@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       post '/guest/get_expired' => 'guests#get_expired'
       
       post '/events/:event_id/guests/:id/:sumofall/updateguestcommitted' => 'guests#updateguestcommitted'
+      post '/events/:event_id/guests/:id/:sumofall/updaterefcommitted' => 'guests#updaterefcommitted'
       get '/events/:event_id/guests/:id/sum_all' => 'guests#sum_all'
       
       
@@ -57,7 +58,7 @@ Rails.application.routes.draw do
         get '/headers/:id' => 'events#headers'
         get '/dataload/:header/:firstName/:lastName/:email/:seatLevel/:seats' => 'events#dataload'
         resource :guest_referrals, path: :refer, only: [:show, :create]
-        resource :guest_referred_purchase, path: :purchase, only: [:show, :create]
+        resource :guest_referred, path: :purchase, only: [:show, :create]
         resources :guests do
           member do
             get :invite
@@ -104,6 +105,7 @@ Rails.application.routes.draw do
   post '/create_referral' => 'events#create_referral', as: :create_referral
   
   get '/events/:event_id/guests/:id/send' => 'guests#send_email_invitation', as: :send_event_guest
+  get '/events/:event_id/guests/:id/ref_count' => 'guests#update_ref_count', as: :guest_ref_count
   put '/events/:event_id/guests/:id/update_in_place' => 'guests#update_in_place', as: :update_event_guest
   
   

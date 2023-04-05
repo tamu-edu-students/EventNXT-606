@@ -1,4 +1,4 @@
-class RefersController < ApplicationController
+class PurchasesController < ApplicationController
   def show
     @event_id = params[:event_id]
     @token = params[:token]
