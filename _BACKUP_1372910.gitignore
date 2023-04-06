@@ -31,7 +31,10 @@
 #/config/master.key
 #/config/credentials/development.key
 #/config/credentials/production.key
+<<<<<<< HEAD
+=======
 
+>>>>>>> c66a6ee2280a995a22ed3c1aa67072ae0c2c65b4
 
 #/config/credentials/test.key
 

@@ -30,9 +30,8 @@ class GenericMailer < ApplicationMailer
     logger.debug email_address_with_name(recipient.email, recipient.full_name)
 
     mail(
-      from: from[0],
+      from: "vaibhavwaste96@gmail.com",
       to: email_address_with_name(recipient.email, recipient.full_name),
-      cc: from,
       subject: subject
     ) do |format|
       format.html { render inline: body.html_safe }

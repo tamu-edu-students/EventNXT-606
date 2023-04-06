@@ -1,5 +1,9 @@
 <div id='purchase' data-controller='purchase update'
+<<<<<<< HEAD
     data-purchase-url-value='/api/v1/events/<%= @event_id %>/purchase?token=<%= @token %>'
+=======
+    data-purchase-url-value='/api/v1/events/<%= @event_id %>/purchase?token=<%= @token %>&referee=<%= @referee %>'
+>>>>>>> VB-referral
     data-update-url-value='/api/v1/events/<%= @event_id %>/purchase'
     data-action='update:created->purchase#disableSubmit'>
   <template data-purchase-target='template'>
@@ -19,11 +23,21 @@
   </template>
   <div class='mb-3' data-purchase-target='dom'></div>
   <p>
+<<<<<<< HEAD
     Click to purchase tickets.
   </p>
   <form id='form-purchase' data-action='update#sendcountForm'>
     <div class='input-group mb-3'>
       <input type='hidden' name='token' value='<%= @token %>'>
+=======
+    Enter number of tickets to be purchased.
+  </p>
+  <form id='form-purchase' data-action='update#sendCountForm'>
+    <div class='input-group mb-3'>
+      <input type='hidden' name='token' value='<%= @token %>'>
+      <input type='hidden' name='referee' value='<%= @referee %>'>
+      <input type='number' name='tickets' placeholder='0'>
+>>>>>>> VB-referral
       <button class='btn btn-outline-success' type='submit' value='submit' form='form-purchase'
           data-purchase-target='submit' data-action='dynamic#updateText' data-dynamic-text-param='Purchased'>Purchase</button>
     </div>

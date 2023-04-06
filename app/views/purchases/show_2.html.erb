@@ -1,0 +1,33 @@
+<style>
+h2 
+{
+  background-color: #80ced6;
+}
+</style>
+  <h2>HURRY UP!!! BOOK YOUR TICKETS</h2>
+  <br><br> 
+
+<div id='purchase' data-controller='purchase'
+    data-purchase-url-value='/api/v1/events/<%= @event_id %>/purchase?token=<%= @token %>'
+    data-purchase-eventid-value=<%= @event_id %> data-book-guestid-value=<%= @token %>
+    data-purchase-limit-value=10 data-purchase-offset-value=0>
+
+  <p><h4>Enter the number of tickets that you would like to book in each seating level:</h4></p><br>
+
+  <div data-purchase-target='sum'>
+      <input type='hidden' name='id' data-nxt-guest_id>
+      <input type='hidden' name='accept' value=1><br>
+
+      <b>No. of tickets:</b>&ensp;<input type='number' name='guestcommitted' min=0 data-nxt-guestcommitted>
+      <span>(maximum tickets: <span data-nxt-sum></span>)</span><br><br></span><span id="error"></span>
+
+    <br>
+  </div> <br><br>     
+
+
+  <form id='form-book' data-action='purchase#sendTickets'>
+    <button class='btn btn-outline-success mt-2' type='submit' form='form-book'
+      data-purchase-target='submit'>Submit</button>
+  </form>
+</div>
+

@@ -5,7 +5,7 @@ export default class BookController extends IndexController {
   static values = { eventid: Number, guestid: Number }
 
   disableSubmit() {
-    console.log("refer called")
+    console.log("purchase called")
     this.submitTarget.textContent = 'Submitted'
     this.submitTarget.disabled = true
   }

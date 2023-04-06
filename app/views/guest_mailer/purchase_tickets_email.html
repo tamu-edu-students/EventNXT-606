@@ -56,18 +56,50 @@
                       You have been referred to FashionNXT event. Please use the below link to purchase your tickets to the event before they run out.
                   <p>
                     <br>
-                      <a href='https://fashionxt.com/'
-                         style="text-decoration: none; 
+                    <br>FASHIONNXT
+                    <br>Invites you for {{event.title}}.</br>
+                    <br>
+                    <br><strong>TO FOLLOW:</strong></br>
+                    </p>
+                    <div class="ticket">
+                     <!-- <div id="img"><img src='{{event.image.url}}' alt='Event image' title='Event Image' style="max-width: 100%;  
+                        height: auto; width: auto"></div>-->
+                      <p><b><strong>Event date: </strong>{{event.datetime}}</b></p>
+                     <!-- <p><strong>Number of Tickets:</strong> {{event.tickets.to_s}}</p>-->
+                      <p><strong>About Event:</strong> {{event.description}}</p>
+                      <p><strong>{{event.address}}</p>
+                      
+                      
+                  </div>  
+                    <p>
+                      <br>
+                        <a href='{{purchase_url}}'
+                           style="text-decoration: none; 
+                                  color:black; 
+                                  border: 2px solid #b94c4c; 
+                                  padding: 10px 30px;
+                                  font-weight: bold;"> 
+                           Purchase link
+                      </a>
+                    </p>
+                    <p style="color: black; font-family: Comic Sans MS, Comic Sans, cursive; font-size: 15px;">
+                      <br>
+                      Looking forward to seeing you there!
+                    </p>
+                     <!-- <a href='{{purchase_url}}'
+                      style="text-decoration: none; 
                                 color:black; 
                                 border: 2px solid #b94c4c; 
                                 padding: 10px 30px;
                                 font-weight: bold;"> 
-                         Purchase Link
+                         Purchase Link <%= @event %>
                     </a>
+                    <!-- <%= button_tag "Preview Changes", :id => "thisone", :type => "button", :class => "btn btn-success btn-rounded", :onclick => "refresh()" %>
+                    <a href='/api/v1/events/<%= @event_id %>/guests?download'><button class='btn btn-primary'>Purchase Tickets</button></a> 
                   </p>
                 <p style="color: black; font-family: Comic Sans MS, Comic Sans, cursive; font-size: 15px;">
                       <br>
-                      Looking forward to seeing you there!
+                      Looking forward to seeing you there! -->
                 </p>
               </div>
                 </td>

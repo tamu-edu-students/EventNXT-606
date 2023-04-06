@@ -92,7 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 202211111668232192) do
   create_table "guest_referrals", force: :cascade do |t|
     t.integer "guest_id", null: false
     t.string "email", null: false
-    t.boolean "counted", default: false, null: false
+    t.integer "counted", default: 0, null: false
+    t.integer "event", null: false
     t.index ["email"], name: "index_guest_referrals_on_email"
     t.index ["guest_id"], name: "index_guest_referrals_on_guest_id"
   end
