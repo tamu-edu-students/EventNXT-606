@@ -14,6 +14,7 @@ class Api::V1::GuestReferralsController < Api::V1::ApiController
     @event = Event.find(@guest.event_id)
     referral = GuestReferral.new 
     referral.guest = @guest
+    referral.guest_id = @guest.id
     referral.event = params[:event_id]
     referral.email = params[:email]
 
