@@ -1,5 +1,5 @@
 <div id='referral' data-controller='refer update'
-    data-refer-url-value='/api/v1/events/<%= @event_id %>/refer?token=<%= @token %>'
+    data-refer-url-value='/api/v1/events/<%= @event_id %>/refer?token=<%= @token %>?referee=<%= @referee %>'
     data-update-url-value='/api/v1/events/<%= @event_id %>/refer'
     data-action='update:created->refer#disableSubmit'>
   <template data-refer-target='template'>

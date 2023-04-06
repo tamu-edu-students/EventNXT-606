@@ -14,24 +14,25 @@ class Api::V1::GuestReferralsController < Api::V1::ApiController
     @event = Event.find(@guest.event_id)
     referral = GuestReferral.new 
     referral.guest = @guest
+    referral.event = params[:event_id]
     referral.email = params[:email]
 
-    if referral.save
-      head :ok
-      @event = Event.find(@guest.event_id)
-      GuestMailer.purchase_tickets_email(referral.email, @event, @guest).deliver_now
-      #redirect_to @event
-    else
-      render json: referral.errors(), status: :unprocessable_entity
-    end
-    '''senders = @guest
+    referral.save
+    head :ok
+    
+    #@event = Event.find(@guest.event_id)
+    #GuestMailer.purchase_tickets_email(referral.email, @event, @guest).deliver_now
+    #redirect_to @event
+    #else
+    #render json: referral.errors(), status: :unprocessable_entity
+    #end
+    
+    senders = @guest
+    @reciever = params[:email]
 
     template = EmailTemplate.where(name: "Purchase Tickets", event_id: params[:event_id], user_id: @guest.added_by)
     
-    puts "test", template.ids[0]
     template = EmailTemplate.find(template.ids[0])
-    
-    puts template.body
 
     # note: attachments are tempfiles here
     attachments = template.attachments.map { |attachment|
@@ -42,7 +43,7 @@ class Api::V1::GuestReferralsController < Api::V1::ApiController
     subject = template.subject
     subject = Mustache.render(subject, event: @event, guest: @guest)
 
-    purchase_url = "#{request.base_url}/events/#{@event.id}/purchase?token=#{@guest.id}"
+    purchase_url = "#{request.base_url}/events/#{@event.id}/purchase?token=#{@guest.id}&referee=#{@reciever}"
 
     body = ''
     ActiveStorage::Current.set(host: request.base_url) do
@@ -63,8 +64,6 @@ class Api::V1::GuestReferralsController < Api::V1::ApiController
     attachments.each { |filename, file| attachments[filename] = file } unless attachments.nil?
 
     GuestMailer.purchase_tickets_email(from, params[:email], subject, body).deliver_now
-    head :ok
-    return referral'''
 
   end
   

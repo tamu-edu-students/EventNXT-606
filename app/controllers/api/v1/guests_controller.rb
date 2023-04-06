@@ -112,18 +112,6 @@ class Api::V1::GuestsController < Api::V1::ApiController
     outbox.each { |mail| mail.deliver_later }
     head :ok
   end
-  
-  
-  def updaterefcommitted
-    guest = GuestRefferal.find(params[:id])
-    if guest.update({:counted => params[:sumofall]})
-      head :ok
-    else
-      head :unprocessable_entity
-    end
-  end
-
-  
 
   def checkin
     guest = Guest.find(params[:id])

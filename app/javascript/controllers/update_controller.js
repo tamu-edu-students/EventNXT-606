@@ -15,21 +15,21 @@ export default class extends Controller {
     payload.delete('access_token');
     payload.delete('authenticity_token');
 
-   /* let id = form.querySelector('input[data-nxt-id]');
+    let id = form.querySelector('input[data-nxt-id]');
     if (!id || id.value === '')
       this.create(payload);
     else
       this.update(payload, id.value);
     let fd = new FormData(this.formTarget)
 
-    /*fetch(`/api/v1/events/${this.eventidValue}/guests/${this.guestidValue}/send`, {
+    fetch(`/api/v1/events/${this.eventidValue}/guests/${this.guestidValue}/send`, {
       method: 'GET',
       body: fd
     }).then(response => {
       if (response.ok) {
         this.disableSubmit()
       }
-    })*/
+    })
   }
   
   sendCountForm(e) {
@@ -82,7 +82,6 @@ export default class extends Controller {
   }
 
   create(payload) {
-    puts "create url", this.urlValue
     fetch(`${this.urlValue}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
