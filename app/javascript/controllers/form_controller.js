@@ -18,6 +18,7 @@ export default class extends Controller {
   }
 
   submit(callback = () => {}) {
+    console.log("submitted")
     var dat = new FormData(this.element);
     var req = new XMLHttpRequest();
     req.open(this.element.getAttribute('method'), this.element.getAttribute('action'))
