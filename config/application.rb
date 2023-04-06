@@ -35,8 +35,8 @@ module EventNXT
       }
     else
       config.action_mailer.smtp_settings = {
-        :user_name => Rails.application.credentials.email[:user_name],
-        :password => Rails.application.credentials.email[:password],
+        #:user_name => Rails.application.credentials.email[:user_name],
+        #:password => Rails.application.credentials.email[:password],
         :address => ENV['EMAIL_DOMAIN'],
         :port => ENV['EMAIL_PORT'],
         :authentication => :plain,
