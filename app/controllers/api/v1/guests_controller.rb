@@ -138,8 +138,11 @@ class Api::V1::GuestsController < Api::V1::ApiController
   def get_expired
     guest = Guest.find(params[:guest_id])
     expired = false
-    if guest and guest.invite_expiration < Time.now
-      expired = true
+    if guest.invite_expiration
+      puts guest.to_json, guest.invite_expiration, "Time", Time.now
+      if guest.invite_expiration < Time.now
+        expired = true
+      end
     end
     render json: expired
   end

@@ -16,7 +16,7 @@ class Api::V1::GuestRefereesController < Api::V1::ApiController
     count = referral.counted
     puts count, params[:tickets]
 
-    if referral.update(:counted => count+params[:tickets].to_i)
+    if referral.update(:counted => 1)
       puts "Count"
       puts referral.counted
       head :ok

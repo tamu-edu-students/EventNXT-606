@@ -97,6 +97,10 @@ export default class GuestController extends IndexController {
         .then(response => response.json())
         .then(data => {
           dom.textContent = `${data['guestcommitted']}`
+          inputCommitted = form.querySelector('input[data-nxt-committed]')
+          if(inputCommited.value == 0) {
+            inputCommited.value = data['guestcommitted']
+          }          
         })
     }
   }  

@@ -40,7 +40,6 @@ Rails.application.routes.draw do
       post '/guest/get_expired' => 'guests#get_expired'
       
       post '/events/:event_id/guests/:id/:sumofall/updateguestcommitted' => 'guests#updateguestcommitted'
-      post '/events/:event_id/guests/:id/:sumofall/updaterefcommitted' => 'guests#updaterefcommitted'
       get '/events/:event_id/guests/:id/sum_all' => 'guests#sum_all'
       
       
