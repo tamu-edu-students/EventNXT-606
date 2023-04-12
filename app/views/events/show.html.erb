@@ -16,6 +16,8 @@
     width:100%;
 
   } */
+ 
+
 
   section{
     padding: 40px;
@@ -78,6 +80,10 @@
   .table {
     border-radius: 17px;
   }
+   .import-link {
+  color: blue;
+  text-decoration: underline;
+}
 </style>
 <script>
     function toggle_referral() {
@@ -287,6 +293,10 @@
   <%= render 'bulk_referral_email' %>
   <span class='ms-2 me-2'></span>
   <%= render 'box_office_data' %>
+  <p>
+  <%= link_to "Import from Ticketmaster", new_guest_guests_path %>
+</p>
+
 </div>
 <h2>Manage Referrals</h2>
 <%= render 'referral_table' %>
