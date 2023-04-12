@@ -23,7 +23,7 @@ class GuestsController < ApplicationController
     api_key = params[:api_key]
     
     # Set up API request
-    uri = URI("https://api.ticketmaster.com/discovery/v2/events/#{event_id}/guestlist")
+    uri = URI("https://app.ticketmaster.com/partners/v1/events/#{event_id}/#{api_key}")#/guestlist
     params = { 'apikey' => api_key }
     uri.query = URI.encode_www_form(params)
     response = Net::HTTP.get_response(uri)
