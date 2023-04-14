@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :guests do
+    collection do
+      get 'import'
+      post 'import', to: 'guests#process_import'
+      get 'new_guest', to: 'guests#new_guest'
+    end
+  end
 
   resources :seats
   use_doorkeeper do

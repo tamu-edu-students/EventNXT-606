@@ -4,6 +4,57 @@ class GuestsController < ApplicationController
   #   @guests = @event.guests
   # end
   
+  require 'net/http'
+  require 'json'
+
+  def index
+    @guests = Guest.all
+    @event = Event.find(params[:event_id])
+    @guests = @event.guests
+  end
+  
+ # def new_guest
+  #  redirect_to new_guests_import_path
+#  end
+  
+  def new_guest
+    @guests_import = GuestsImport.new
+    render 'guests/newimport'
+  end
+
+  def import
+  # Get event ID and API key from user input
+  event_id = params[:guests_import][:event_id]
+  api_key = params[:guests_import][:api_key]
+
+  # Set up API request
+  uri = URI("https://app.ticketmaster.com/partners/v1/events/#{event_id}/#{api_key}")#/guestlist
+  params = { 'apikey' => api_key }
+  uri.query = URI.encode_www_form(params)
+  response = Net::HTTP.get_response(uri)
+  guest_list = JSON.parse(response.body)
+
+  # Parse guest list and create Guest records
+  guest_list['guests'].each do |guest_data|
+    guest = Guest.new(
+      first_name: guest_data['first_name'],
+      last_name: guest_data['last_name'],
+      email: guest_data['email'],
+      seat_level: guest_data['seat_level'],
+      number_of_seats: guest_data['number_of_seats'],
+      event_id: guest_data['event_id']
+    )
+    guest.save
+  end
+
+  redirect_to guests_path, notice: "Guest list imported successfully"
+end
+
+  
+  def guests_import_params
+    params.require(:guests_import).permit(:event_id, :api_key)
+  end
+
   def send_email_invitation
     #new
     #new text
@@ -247,3 +298,4 @@ end
 #     end
     
 # end
+
