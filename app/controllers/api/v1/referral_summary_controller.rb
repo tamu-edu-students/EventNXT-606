@@ -1,6 +1,5 @@
 class Api::V1::ReferralSummaryController < Api::V1::ApiController
   def index
-    puts "$$$$$$%%%%%%%$$$$$$$$$$$$$"
     summary = query.limit(params[:limit]).offset(params[:offset])
     render json: summary, except: [:id]
   end

@@ -1,5 +1,6 @@
 class Api::V1::TicketsController < Api::V1::ApiController
   def show
+
     guest = Guest.where(id: params[:id], event_id: params[:event_id]).first
     render json: {message: "No such guest for event."}, status: :no_content and return unless guest
     if params.has_key?(:seat_id)
@@ -7,6 +8,7 @@ class Api::V1::TicketsController < Api::V1::ApiController
     else
       tickets = guest.guest_seat_tickets
     end
+    
     render json: tickets
   end
 

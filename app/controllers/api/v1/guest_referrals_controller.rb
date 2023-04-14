@@ -12,7 +12,7 @@ class Api::V1::GuestReferralsController < Api::V1::ApiController
   def create
     @guest = Guest.find_by(id: params[:token], event_id: params[:event_id])
     @event = Event.find(@guest.event_id)
-    referral = GuestReferral.new 
+    '''referral = GuestReferral.new 
     referral.guest = @guest
     referral.guest_id = @guest.id
     referral.event = params[:event_id]
@@ -22,7 +22,7 @@ class Api::V1::GuestReferralsController < Api::V1::ApiController
     
     if(not referred_guest)
       referral.save
-    end
+    end'''
     
     head :ok
     
