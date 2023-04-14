@@ -1,3 +1,5 @@
+###### amin --- 4 steps (1 failed, 2 skipped, 1 undefined)
+
 Feature: upload image to the event
   I want to attach an image for the event
 

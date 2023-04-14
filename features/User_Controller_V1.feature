@@ -1,3 +1,5 @@
+###### amin --- 28 steps (4 failed, 17 skipped, 7 passed)
+
 Feature: Users API
 
   Background:

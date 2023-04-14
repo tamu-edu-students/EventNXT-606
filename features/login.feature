@@ -1,3 +1,5 @@
+###### amin --- 12 steps (2 failed, 6 skipped, 4 passed)
+
 Feature: User can login and view events
   As a registered user
   I want to be able to login and view my events

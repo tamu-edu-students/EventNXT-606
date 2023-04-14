@@ -1,3 +1,5 @@
+###### amin --- 4 steps (1 failed, 2 skipped, 1 passed)
+
 Feature: Navigate to Home Page
   As a user on the register page
   I want to be able to click the Home button in the navbar

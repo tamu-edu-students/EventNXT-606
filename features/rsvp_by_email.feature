@@ -1,3 +1,5 @@
+###### amin --- 19 steps (1 skipped, 18 undefined)
+
 Feature: event owner manages the tickets with VIP guests through RSVP email 
 
   As an event owner 
