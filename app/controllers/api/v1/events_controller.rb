@@ -94,6 +94,15 @@ class Api::V1::EventsController < Api::V1::ApiController
         :booked_count => count)
       boxofficeSeat.save!
     end
+    
+    # load seat categories from boxoffice file and display them in manage seating categories. - SP
+    summary.each do |section, count|
+      existing_seat = Seat.find_by(event_id: event.id, category: section)
+      if existing_seat.nil?
+        copy_seats = Seat.new(event_id: event.id, category: section, total_count: 0)
+        copy_seats.save!
+      end
+    end
   end
 
   def update

@@ -9,12 +9,28 @@ class EventsController < ApplicationController
     @event_id = params[:id]
     @seats = Seat.where(event_id: params[:id])
     @guests = Guest.where(event_id: params[:id])
+    # @res = Seat.left_joins(:guest_seat_tickets, :guests)
+    #           .joins("LEFT JOIN boxoffice_seats ON boxoffice_seats.seat_section = seats.category")
+    #           .select('seats.category,price,total_count,'\
+    #                   'sum(coalesce(committed,0)) as total_committed,'\
+    #                   'sum(coalesce(allotted,0)) as total_allotted,'\
+    #                   'total_count - sum(coalesce(committed,0)) - sum(coalesce(boxoffice_seats.booked_count,0)) as remaining,'\
+    #                   'count(*) filter(where "booked") as total_booked,'\
+    #                   'count(*) filter (where not "booked") as total_not_booked,'\
+    #                   'count(distinct(guest_id)) filter(where "allotted" > 0) as total_guests ,'\
+    #                   'sum(coalesce(committed,0)) * price as balance, '\
+    #                   'sum(coalesce(boxoffice_seats.booked_count,0)) as boxoffice_booked')
+    #           .group('seats.id')
+    #           .where(seats: {event_id: @event.id}, boxoffice_seats: {event_id: @event.id})
+    
+    #added for tentative remaining seats - SP
     @res = Seat.left_joins(:guest_seat_tickets, :guests)
               .joins("LEFT JOIN boxoffice_seats ON boxoffice_seats.seat_section = seats.category")
               .select('seats.category,price,total_count,'\
                       'sum(coalesce(committed,0)) as total_committed,'\
                       'sum(coalesce(allotted,0)) as total_allotted,'\
                       'total_count - sum(coalesce(committed,0)) - sum(coalesce(boxoffice_seats.booked_count,0)) as remaining,'\
+                      'total_count - sum(coalesce(allotted,0)) - sum(coalesce(boxoffice_seats.booked_count,0)) as tentative_remaining,'\
                       'count(*) filter(where "booked") as total_booked,'\
                       'count(*) filter (where not "booked") as total_not_booked,'\
                       'count(distinct(guest_id)) filter(where "allotted" > 0) as total_guests ,'\
@@ -22,6 +38,7 @@ class EventsController < ApplicationController
                       'sum(coalesce(boxoffice_seats.booked_count,0)) as boxoffice_booked')
               .group('seats.id')
               .where(seats: {event_id: @event.id}, boxoffice_seats: {event_id: @event.id})
+    
     @boxoffice_seats = BoxofficeSeat.where(event_id: params[:id])
   end
 
