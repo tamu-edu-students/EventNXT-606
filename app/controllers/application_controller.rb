@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by(id: doorkeeper_token[:resource_owner_id]) if doorkeeper_token
+    if doorkeeper_token
+      Rails.logger.debug "Doorkeeper token found: #{doorkeeper_token.inspect}"
+      @current_user ||= User.find_by(id: doorkeeper_token[:resource_owner_id])
+      Rails.logger.debug "Current user: #{@current_user.inspect}"
+    end
   end
 end

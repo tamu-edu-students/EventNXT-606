@@ -1,25 +1,139 @@
 <% content_for :nav do %>
   <%= render 'layouts/nav' %>
 <% end %>
+<style>
 
-<div id='events' data-controller='event update destroy' data-action='update:created->event#redirect destroy:deleted->event#query'
-    data-event-url-value='/api/v1/events' data-update-url-value='/api/v1/events' data-destroy-url-value='/api/v1/events'
-    data-event-offset-value=0 data-event-limit-value=10>
+  .card:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+
+  .card-subtitle {
+    font-weight: bold;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .card-text {
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+
+  .card-footer {
+    background-color: rgb(49, 47, 47);
+  }
+
+  .card-footer p,
+  .card-footer .text-muted {
+    color: white;
+  }
+
+  .navbar-toggler {
+    color: white;
+  }
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30' width='30' height='30' fill='white'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  @keyframes slideInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+
+  .slideInLeft {
+    animation-name: slideInLeft;
+  }
+
+  @keyframes slideInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slideInRight {
+    animation-name: slideInRight;
+  }
+
+
+  .placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    background-color: #2c3e50;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+  }
+  .dropdown {
+    position: relative;
+    z-index: 100;
+  }
+</style>
+<div class="container mt-5">
+  <h1 class="display-3 text-center animated slideInLeft mb-5">Manage Events</h1>
+  <!-- <img src="https://via.placeholder.com/300" class="img-fluid mt-4 animated slideInRight" alt="Placeholder Image"> -->
+  <div class="description mt-5  mb-5 animated slideInRight">
+    <p class="display-6">
+      Here you can easily create, view, edit, and delete your events, allowing you to keep track of all your event-related activities.
+    </p>
+  </div>
+</div>
+<div class="mt-3" id='events' data-controller='event update destroy' data-action='update:created->event#redirect destroy:deleted->event#query'
+  data-event-url-value='/api/v1/events' data-update-url-value='/api/v1/events' data-destroy-url-value='/api/v1/events'
+  data-event-offset-value=0 data-event-limit-value=10>
   <template data-event-target='template'>
-    <div class='col-xs-4'>
-      <div class='card'>
-        <img class='img-fluid' data-nxt-image_url>
-        <div class='card-body'>
-          <a href='#' data-nxt-link_><h5 class='card-title' data-nxt-title></h5></a>
-          <h6 class='card-subtitle mb-2 text-muted' data-nxt-datetime></h6>
-          <h6 class='card-subtitle mb-2 text-muted' data-nxt-address></h6>
-          <p class='card-text' data-nxt-description></p>
-        </div>
+    <div class='col-lg-6 col-md-6 col-12 mb-3'>
+      <a href="#" data-nxt-link_ style="text-decoration: none; color: inherit;" id="card-link">
+        <div class='card shadow-lg rounded' data-nxt-link_>
+          <img class='img-fluid rounded-top' data-nxt-image_url onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1505236858219-8359eb29e329?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjh8fGV2ZW50fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60';">
+          <div class='card-body'>
+            <h4 class='card-title mb-3'  data-nxt-title data-nxt-link_></h4>
+            <h6 class='card-subtitle mb-2 text-muted' data-nxt-datetime></h6>
+            <h6 class='card-subtitle mb-2 text-muted mb-3' data-nxt-address></h6>
+            <p class='card-text lead' data-nxt-description></p>
+          </div>
+        </a>
         <div class='d-flex align-content-center justify-content-between card-footer'>
-          <p class='m-0'><small class='text-muted'>Last updated <span id="updated_at" data-nxt-updated_at></span></small></p>
-          <div class='dropdown'>
-            <button class='btn-sm btn-secondary' data-bs-toggle='dropdown'>
+          <p class='m-0'><small class='text-white'>Last updated <span id="updated_at" data-nxt-updated_at></span></small></p>
+          <div class='dropdown dropup'>
+            <!-- <button class='btn-sm btn-secondary' data-bs-toggle='dropdown' id="dropdown-btn">
               <i class='bi bi-three-dots-vertical'></i>
+            </button> -->
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="dropdown" id="dropdown-btn" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="dropdown" id="dropdown-btn" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
             <ul class='dropdown-menu'>
               <li><a class='dropdown-item' data-nxt-box_office_url>Download Box Office</a></li>
@@ -33,8 +147,8 @@
   </template>
   <%= render 'form' %>
   <div class="container">
-    <div class='row row-cols-3' data-event-target='dom' >
-      <div class='col-xs-4' data-event-target='add'>
+    <div class='row row-cols-1 row-cols-md-2 row-cols-lg-2' data-event-target='dom' >
+      <div class='col-lg-6 col-md-6 col-12' data-event-target='add'>
         <div class='card text-center align-items-center'>
           <div class='card-body'>
             <p class='card-text'><i class='bi bi-plus'></i>Add Event</p>

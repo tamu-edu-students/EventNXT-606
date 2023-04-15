@@ -6,7 +6,6 @@ end
 Given("I am on the register page") do
     # Navigate to the register page using Capybara
 	 visit root_path(register: true)
-
 	 save_and_open_page
 end
 

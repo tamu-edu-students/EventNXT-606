@@ -17,4 +17,9 @@ class LoginController < Doorkeeper::TokensController
   def client_secret
     Doorkeeper::Application.find_by(name: 'Web').secret
   end
+
+  def create_success
+    flash[:notice] = "Successfully logged in"
+    redirect_to events_path # Redirect to the "/events" route
+  end
 end

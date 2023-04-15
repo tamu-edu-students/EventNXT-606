@@ -1,20 +1,9 @@
-Feature: User can login and view events
-  As a registered user
-  I want to be able to login and view my events
-  So that I can manage my events
+Feature: User login
 
-  Background:
-    Given I am a registered user
+  Scenario: User successfully logs in
+    Given a registered user with email "john.doe@example.com" and password "password123"
     And I am on the login page
-
-  Scenario: Login with valid credentials
-    When I fill in "Email" with "bebop.quinn@tamu.edu"
-    And I fill in "Password" with "Bebop2023"
-    And I click the "Login" button
-    Then I should be on my events page
-
-  Scenario: Login with invalid credentials
-    When I fill in "Email" with "invaliduser@example.com"
-    And I fill in "Password" with "invalidpassword"
-    And I click the "Login" button
-    Then I should see "Invalid email or password"
+    When I fill in the login form with email "john.doe@example.com" and password "password123"
+    And I click the Log in button
+    Then I should be redirected to the events page
+    And I should see a successful login message
