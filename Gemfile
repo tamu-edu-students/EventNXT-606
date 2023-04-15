@@ -47,3 +47,7 @@ gem "web-console"
 gem "spring"
 
 gem "jquery-rails"
+
+group :test do
+  gem 'rails-controller-testing'
+end

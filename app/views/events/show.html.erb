@@ -252,6 +252,7 @@
       <th width=199.8>Total Committed</th>
       <th width=199.8>Total Sold</th>
       <th width=199.8>Free Seats</th>
+      <th width=199.8>Tentative Free Seats (based on seats allotted to guests)</th>
       <!--       <th width=199.8>Balance</th> -->
     </tr>
     <tbody>
@@ -263,6 +264,7 @@
           <th width=199.8><%= result.total_committed %></th>
           <th width=199.8><%= result.boxoffice_booked %></th>
           <th width=199.8><%= result.remaining %></th>
+          <th width=199.8><%=  result.tentative_remaining %></th>
           <!--           <th width=199.8><%= result.balance %></th> -->
         </tr>
       <% end %>
