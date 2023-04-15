@@ -1,9 +1,11 @@
 Feature: Adding an event to the dashboard
+  As an user
+  I want to be able to create an event
+  So that I can keep track of my events in my dashboard
   
   Scenario: User adds an event to their dashboard
-    Given I am logged in as a registered user
-    And I am on the event dashboard path
-    When I click on the "Add Event" button
+    Given I am at "events"
+    When I click on the "Add" button
     Then I should see a form with id "form-event" pop up
     When I fill in the following details:
       | event_name       | My Event             |

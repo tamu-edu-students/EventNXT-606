@@ -1,17 +1,10 @@
-Given("I am logged in as a registered user") do
-  visit root_path
-  fill_in "login-input-email", with: "isazadeh.biz@gmail.com"
-  fill_in "login-input-password", with: "12345"
-  click_button "Log in"
-end
+# Given("I am at {string}") do |path|
+#   visit path
+# end
 
-Given("I am on the event dashboard path") do
-  visit events_path
-end
-
-When("I click on the {string} button") do |button_text|
-  click_on button_text
-end
+# When("I click on the {string} button") do |button_text|
+#   click_on button_text
+# end
 
 Then("I should see a form with id {string} pop up") do |form_id|
   expect(page).to have_css("##{form_id}")
