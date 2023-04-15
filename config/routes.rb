@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :guests do
+    collection do
+      get 'import'
+      post 'import', to: 'guests#process_import'
+      get 'new_guest', to: 'guests#new_guest'
+    end
+  end
 
   resources :seats
   use_doorkeeper do
@@ -57,6 +64,7 @@ Rails.application.routes.draw do
         get '/headers/:id' => 'events#headers'
         get '/dataload/:header/:firstName/:lastName/:email/:seatLevel/:seats' => 'events#dataload'
         resource :guest_referrals, path: :refer, only: [:show, :create]
+        resource :guest_referees, path: :purchase, only: [:show, :create]
         resources :guests do
           member do
             get :invite
@@ -66,17 +74,27 @@ Rails.application.routes.draw do
           end
         end
         resources :sale_tickets
-        resources :boxoffice_headers
+        resources :boxoffice_headers, only: [:index] do
+      get :header_names, on: :collection
+    end
         resources :email_templates, path: :templates
         resources :referral_rewards, path: :rewards
         resources :referral_summary, only: [:index]
         resources :seats
       end
     end
+        # to access api/v2/users
+    namespace :v2 do 
+      resources :users, only: [:index, :show, :update, :destroy]
+    end
+    #if your application is hosted at http://example.com 
+    #and endpoint is at api/v2/users, 
+    #you can make a request to http://example.com/api/v2/users to get a list of users.
   end
   
   resources :events do
     resource :refer
+    resource :purchase
     resource :book
     resources :guests
     resources :seating_types
@@ -93,6 +111,7 @@ Rails.application.routes.draw do
   post '/create_referral' => 'events#create_referral', as: :create_referral
   
   get '/events/:event_id/guests/:id/send' => 'guests#send_email_invitation', as: :send_event_guest
+  get '/events/:event_id/guests/:id/ref_count' => 'guests#update_ref_count', as: :guest_ref_count
   put '/events/:event_id/guests/:id/update_in_place' => 'guests#update_in_place', as: :update_event_guest
   
   

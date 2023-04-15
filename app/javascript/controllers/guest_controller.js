@@ -92,11 +92,18 @@ export default class GuestController extends IndexController {
   }
   
   handleGuestCommitted() {
+    let iter = 0
     for (const dom of this.element.querySelectorAll('p[data-nxt-guestcommitted]')) {
       fetch(`/api/v1/guests/${dom.textContent}`)
         .then(response => response.json())
         .then(data => {
           dom.textContent = `${data['guestcommitted']}`
+          console.log("commiting")
+          inputCommitted = this.element.querySelectorAll('input[data-nxt-committed]')[iter]
+          iter = iter +1
+          if(inputCommited) {
+            inputCommited.value = data['guestcommitted']
+          }          
         })
     }
   }  
@@ -121,6 +128,8 @@ export default class GuestController extends IndexController {
     let guestId = form.querySelector('input[data-nxt-id]').value
     let inputAllotted = form.querySelector('input[data-nxt-allotted]')
     let inputCommitted = form.querySelector('input[data-nxt-committed]')
+    let qCommitted = form.querySelector('q[data-nxt-guestcommitted]')
+    
 
     // update the allotted input after selecting seat tier
     if (e.target.tagName === 'SELECT' && e.target.name === 'seat_id') {
@@ -131,6 +140,7 @@ export default class GuestController extends IndexController {
         fetch(`${this.urlValue}/${guestId}/tickets?seat_id=${seatId}`)
           .then(response => response.json())
           .then(data => {
+            console.log(data)
             if (data.length == 0) {
               inputAllotted.value = 0
               inputCommitted.value = 0

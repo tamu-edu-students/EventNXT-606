@@ -10,13 +10,23 @@ class Guest < ApplicationRecord
 
   attribute :booked, :boolean, default: false
   attribute :checked, :boolean, default: false
-  
+
   validates :email, presence: true, uniqueness: { scope: :event }
   validates :booked, inclusion: [true, false, nil]
   validates :added_by, presence: true
   validates :referral_expiration, expiration: true
   validate :checked_only_if_booked
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, uniqueness: { scope: :event_id }
+  #validates :seat_level, presence: true
 
+  def self.new_guest(attributes = {})
+    guest = self.new(attributes)
+    guest.type = 'Ticketmaster'
+    guest
+  end
+  
   def checked_only_if_booked
     return if (booked || !checked)
     errors.add(:checked, "can't be true if guest hasn't booked")

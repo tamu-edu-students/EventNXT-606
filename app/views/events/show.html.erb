@@ -20,7 +20,13 @@
       height:100%;
       width:100%;
 
+<<<<<<< HEAD
     } */
+=======
+  } */
+ 
+
+>>>>>>> 4d66d4f0b2acbe7601e3ffbd8a48874a3535faba
 
   section {
     padding: 40px;
@@ -89,6 +95,10 @@
   .table {
     border-radius: 17px;
   }
+   .import-link {
+  color: blue;
+  text-decoration: underline;
+}
 </style>
 <script>
   function toggle_referral() {
@@ -197,7 +207,12 @@
     eventModal.querySelector('#event-name').value = "<%= @event.title %>"
     eventModal.querySelector('#event-address').value = "<%= @event.address %>"
     eventModal.querySelector('#event-description').value = "<%= @event.description %>"
+<<<<<<< HEAD
     eventModal.querySelector('#event-datetime').value = (new Date("<%= @event.datetime.to_fs(:iso8601) %>")).toISOString().slice(0, 16)
+=======
+    eventModal.querySelector('#event-datetime').value = (new Date("<%= @event.datetime.to_fs(:iso8601) %>")).toISOString().slice(0,16)
+    eventModal.querySelector('#event-boxoffice').value = "<%= @event.box_office %>"
+>>>>>>> 4d66d4f0b2acbe7601e3ffbd8a48874a3535faba
   })
 </script>
 <%# Manage Seating Levels %>
@@ -271,11 +286,13 @@
       <th width=199.8>Total Committed</th>
       <th width=199.8>Total Sold</th>
       <th width=199.8>Free Seats</th>
+      <th width=199.8>Tentative Free Seats (based on seats allotted to guests)</th>
       <!--       <th width=199.8>Balance</th> -->
     </tr>
     <tbody>
       <% @res.each do |result| %>
         <tr>
+<<<<<<< HEAD
           <th width=199.8>
             <%= result.category %>
           </th>
@@ -294,6 +311,15 @@
           <th width=199.8>
             <%= result.remaining %>
           </th>
+=======
+          <th width=199.8><%= result.category %></th>
+          <th width=199.8><%= result.total_guests %></th>
+          <th width=199.8><%= result.total_allotted%></th>
+          <th width=199.8><%= result.total_committed %></th>
+          <th width=199.8><%= result.boxoffice_booked %></th>
+          <th width=199.8><%= result.remaining %></th>
+          <th width=199.8><%=  result.tentative_remaining %></th>
+>>>>>>> 4d66d4f0b2acbe7601e3ffbd8a48874a3535faba
           <!--           <th width=199.8><%= result.balance %></th> -->
         </tr>
       <% end %>
@@ -325,6 +351,10 @@
   <%= render 'bulk_referral_email' %>
   <span class='ms-2 me-2'></span>
   <%= render 'box_office_data' %>
+  <p>
+  <%= link_to "Import from Ticketmaster", new_guest_guests_path %>
+</p>
+
 </div>
 <h2>Manage Referrals</h2>
 <%= render 'referral_table' %>

@@ -80,6 +80,12 @@ class Api::V1::EventsController < Api::V1::ApiController
           :seat_section => row[seatLevel],
           :tickets => row[seats])
         saleTicket.save!
+        
+        referral = GuestReferral.find_by(event: event.id, email: row[email])
+        puts referral.to_json
+        if(referral)
+          referral.update(:counted => row[seats])
+        end
       end
     end
     summary.each do |section, count|
@@ -88,17 +94,27 @@ class Api::V1::EventsController < Api::V1::ApiController
         :booked_count => count)
       boxofficeSeat.save!
     end
+    
+    # load seat categories from boxoffice file and display them in manage seating categories. - SP
+    summary.each do |section, count|
+      existing_seat = Seat.find_by(event_id: event.id, category: section)
+      if existing_seat.nil?
+        copy_seats = Seat.new(event_id: event.id, category: section, total_count: 0)
+        copy_seats.save!
+      end
+    end
   end
 
   def update
     event = Event.find params[:id]
-    update_referral_count event
+    #update_referral_count event
     remove_box_office_data event
     event.update(event_params)
     if event.valid?
       event.save
       render json: with_attachments(event)
     else
+      puts "Not working"
       render json: {errors: event.errors.full_messages}, status: :unprocessable_entity
     end
   end
@@ -231,7 +247,7 @@ class Api::V1::EventsController < Api::V1::ApiController
   end
 
   def event_params
-    params.permit(:title, :address, :datetime, :image, :description, :box_office, :last_modified, :user_id)
+    params.permit(:title, :address, :datetime, :image, :description, :box_office, :last_modified, :user_id, :id)
         #:image, :box_office, :x1, :y1, :x2, :y2, :user_id)
   end
 

@@ -1,0 +1,54 @@
+<h1>Welcome</h1>
+
+
+<p>
+  <%= link_to "Import from Ticketmaster", new_guest_guests_path %>
+</p>
+
+<div class="containers border-bottom border-dark" data-boxoffice-target='dom'>
+  <% @guests.each do |guest| %>
+    <div class='row align-items-end mb-4 border-dark'>
+      <div class='col-md-auto'>
+        <input class='form-check-input' type='checkbox' name='boxoffice_selector' data-nxt-id='<%= guest.id %>' data-update-target='update'>
+      </div>
+      <div class='col-md-3'>
+        <span data-nxt-first_name><%= guest.first_name %></span>
+        <span data-nxt-last_name><%= guest.last_name %></span>
+      </div>
+      <div class='col-md-3'>
+        <input name="boxoffice_email" type="text" data-nxt-email value='<%= guest.email %>' disabled>
+      </div>
+      <div class='col-md-1'>
+        <span name="seat_section" data-nxt-seat_section><%= guest.seat_section %></span>
+      </div>
+      <div class='col-md-1'>
+        <span name="tickets" data-nxt-tickets><%= guest.tickets %></span>
+      </div>
+      <div class='col-md-2'>
+        <div class="dropdown">
+          <button class='btn btn-secondary dropdown-toggle' type='button'
+              data-bs-toggle='dropdown' aria-expanded='false'>
+            Actions
+          </button>
+          <ul class='dropdown-menu'>
+            <li>
+              <button class='dropdown-item dropdown-email-item' type='button'
+                      data-bs-toggle='modal' data-bs-target='#email-modal'
+                      data-nxt-email='<%= guest.email %>'>
+                Send Email
+              </button>
+            </li>
+            <li><hr class='dropdown-divider'></li>
+            <li>
+              <button class='text-danger dropdown-item dropdown-delete-item' type='button'
+                      data-nxt-id='<%= guest.id %>'
+                      data-action='destroy#destroyByValue'>
+                Delete
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

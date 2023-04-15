@@ -3,15 +3,32 @@ import IndexController from "controllers/index_controller";
 export default class BoxofficeController extends IndexController {
     static values = { eventid: Number};
   
-    query() {
-      super.query();
-      
+     /*global Rails*/
+   query(event) {
+  let eventId = event.currentTarget.dataset.boxofficeEventidValue;
+  let url = event.currentTarget.dataset.boxofficeUrlValue;
+
+    Rails.ajax({
+    type: 'GET',
+    url: url,
+    data: {
+      event_id: eventId
+    },
+    success: (data) => {
+      this.update(data);
+    },
+    error: (err) => {
+      console.log(err);
     }
+  });
+}
+
 
     postProcess() {
       this.updateHeaders();
     }
-
+    /*global fetch*/
+    /*global localStorage*/
     loadHeader() {
       let row = document.querySelector("input#header-line").value
       fetch(`/api/v1/events/${this.eventidValue}/headers/${row}`, {
@@ -33,7 +50,6 @@ export default class BoxofficeController extends IndexController {
         templates.row, 0);
       });
   }
-
   createDropdown(element, divElement, rows, value) {
     let i = 0;
     var select = document.getElementById(element);
