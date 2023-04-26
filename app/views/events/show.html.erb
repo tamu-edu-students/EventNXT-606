@@ -20,13 +20,7 @@
       height:100%;
       width:100%;
 
-<<<<<<< HEAD
     } */
-=======
-  } */
- 
-
->>>>>>> 4d66d4f0b2acbe7601e3ffbd8a48874a3535faba
 
   section {
     padding: 40px;
@@ -207,12 +201,8 @@
     eventModal.querySelector('#event-name').value = "<%= @event.title %>"
     eventModal.querySelector('#event-address').value = "<%= @event.address %>"
     eventModal.querySelector('#event-description').value = "<%= @event.description %>"
-<<<<<<< HEAD
-    eventModal.querySelector('#event-datetime').value = (new Date("<%= @event.datetime.to_fs(:iso8601) %>")).toISOString().slice(0, 16)
-=======
     eventModal.querySelector('#event-datetime').value = (new Date("<%= @event.datetime.to_fs(:iso8601) %>")).toISOString().slice(0,16)
     eventModal.querySelector('#event-boxoffice').value = "<%= @event.box_office %>"
->>>>>>> 4d66d4f0b2acbe7601e3ffbd8a48874a3535faba
   })
 </script>
 <%# Manage Seating Levels %>
@@ -292,26 +282,6 @@
     <tbody>
       <% @res.each do |result| %>
         <tr>
-<<<<<<< HEAD
-          <th width=199.8>
-            <%= result.category %>
-          </th>
-          <th width=199.8>
-            <%= result.total_guests %>
-          </th>
-          <th width=199.8>
-            <%= result.total_allotted%>
-          </th>
-          <th width=199.8>
-            <%= result.total_committed %>
-          </th>
-          <th width=199.8>
-            <%= result.boxoffice_booked %>
-          </th>
-          <th width=199.8>
-            <%= result.remaining %>
-          </th>
-=======
           <th width=199.8><%= result.category %></th>
           <th width=199.8><%= result.total_guests %></th>
           <th width=199.8><%= result.total_allotted%></th>
@@ -319,7 +289,6 @@
           <th width=199.8><%= result.boxoffice_booked %></th>
           <th width=199.8><%= result.remaining %></th>
           <th width=199.8><%=  result.tentative_remaining %></th>
->>>>>>> 4d66d4f0b2acbe7601e3ffbd8a48874a3535faba
           <!--           <th width=199.8><%= result.balance %></th> -->
         </tr>
       <% end %>
