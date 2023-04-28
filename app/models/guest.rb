@@ -51,4 +51,15 @@ class Guest < ApplicationRecord
       end
     end
   end
+
+  after_create :generate_qr_code
+
+  def generate_qr_code
+    Rails.logger.info "Generating QR code for guest #{self.id}"
+    self.qr_code = QrCodeService.generate_qr_code(self)
+    self.qr_code_png = QrCodeService.generate_qr_code_png(self)
+
+    save
+    Rails.logger.info "QR code and QR code PNG generated for guest #{self.id}"
+  end
 end

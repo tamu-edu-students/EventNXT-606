@@ -5,6 +5,10 @@ Rails.application.routes.draw do
       post 'import', to: 'guests#process_import'
       get 'new_guest', to: 'guests#new_guest'
     end
+
+    member do
+      get 'show_qr'
+    end
   end
 
   resources :seats

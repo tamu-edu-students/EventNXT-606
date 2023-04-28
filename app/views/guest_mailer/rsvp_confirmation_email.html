@@ -1,97 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body style=" background-color: white;">
-    <table align="center" border="0" cellpadding="0" cellspacing="0"
-           width="1200" style="border:2px solid black">
-        <tbody>
-            <tr>
-                <td align="center">
-                    <table align="center" border="0" cellpadding="0"
-                           cellspacing="0" class="col-550" width="1200">
-                        <tbody>
-                            <tr>
-                                <td align="center" style="background-color: #ECC5C0;
+
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+
+<body style=" background-color: white;">
+  <table align="center" border="0" cellpadding="0" cellspacing="0" width="1200" style="border:2px solid black">
+    <tbody>
+      <tr>
+        <td align="center">
+          <table align="center" border="0" cellpadding="0" cellspacing="0" class="col-550" width="1200">
+            <tbody>
+              <tr>
+                <td align="center" style="background-color: #ECC5C0;
                                            height: 50px;">
-   
-                                    <a href="#" style="text-decoration: none;">
-                                        <p style="color:white;
+
+                  <a href="#" style="text-decoration: none;">
+                    <p style="color:white;
                                                   font-weight:bold; font-size: 22px">
-                                            FASHIONNXT
-                                        </p>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                      FASHIONNXT
+                    </p>
+                  </a>
                 </td>
-            </tr>
-            <tr style="height: 100px;">
-                <td align="center" style="border: none;
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr style="height: 100px;">
+        <td align="center" style="border: none;
                           
                            padding-right: 80px;padding-left:60px">
-   
-                    <p style="font-weight: bolder;font-size: 32px; font-family: Comic Sans MS, Comic Sans, cursive;
+
+          <p style="font-weight: bolder;font-size: 32px; font-family: Comic Sans MS, Comic Sans, cursive;
                               letter-spacing: 0.025em;
                               color:black;">
-                         Your booking is confirmed for <p style="color: palevioletred;font-size: 32px"><strong>{{event.title}}</strong>
-                        
-                    </p>
-                    <div id="img"><img src='{{event.image.url}}' alt='Event image' title='Event Image' style="max-width: 100%;  
+            Your booking is confirmed for
+          <p style="color: palevioletred;font-size: 32px"><strong>{{event.title}}</strong>
+
+          </p>
+          <div id="img"><img src='{{event.image.url}}' alt='Event image' title='Event Image' style="max-width: 100%;  
                       height: 300px; width: 400px; border: 1px solid #ddd; border-radius: 4px; padding: 5px"></div>
-                </td>
-            </tr>
-   
-            <tr style="display: inline-block;">
-                <td style="height: 100px;
+        </td>
+      </tr>
+
+      <tr style="display: inline-block;">
+        <td style="height: 100px;
                            padding: 40px;
                            border: none;">
-                     
-                    <p class="data"
-                       style="text-align: justify-all;
+
+          <p class="data" style="text-align: justify-all;
                               align-items: center; 
                               font-size: 15px;
                               font-family: Comic Sans MS, Comic Sans, cursive;
                               padding-bottom: 12px;
                               color: black">
-                      Hi {{guest.first_name}} {{guest.last_name}},
-                      <br>
-                      <br>FASHIONNXT
-                    <br>Is expecting you for {{event.title}}.</br>
-                    <br>
-                    <br><strong>YOUR SEAT ASSIGNMENT HAS BEEN CONFIRMED.</strong></br>
-                    </p>
-                    <div class="ticket">
-                      <p><b><strong>Name: </strong>{{guest.first_name}} {{guest.last_name}} </b></p>
-                      <p><b>Event title: {{event.title}} </b></p>
-                      <p><b><strong>Event date: </strong>{{event.datetime}}</b></p>
-                      {{#tickets}}
-                      <p><b><strong>Seat Category: </strong>{{category}}</b> {{committed}}</p>
-                      {{/tickets}}
-                      <p><strong>About Event: </strong> {{event.description}}</p>
-                      <p><strong>Event address: </strong>{{event.address}}</p>
-                                           
-                  </div>  
-                  <br><br>
-                    <p>Please refer your friends using the link</p>
-                    <p>
-                        <a href='{{refer_url}}'
-                           style="text-decoration: none; 
+            Hi {{guest.first_name}} {{guest.last_name}},
+            <br>
+            <br>FASHIONNXT
+            <br>Is expecting you for {{event.title}}.</br>
+            <br>
+            <br><strong>YOUR SEAT ASSIGNMENT HAS BEEN CONFIRMED.</strong></br>
+          </p>
+          <div class="ticket">
+            <p><b><strong>Name: </strong>{{guest.first_name}} {{guest.last_name}} </b></p>
+            <p><b>Event title: {{event.title}} </b></p>
+            <p><b><strong>Event date: </strong>{{event.datetime}}</b></p>
+            {{#tickets}}
+            <p><b><strong>Seat Category: </strong>{{category}}</b> {{committed}}</p>
+            {{/tickets}}
+            <p><strong>About Event: </strong> {{event.description}}</p>
+            <p><strong>Event address: </strong>{{event.address}}</p>
+            <p><strong>Guest ID: </strong>{{guest.id}}</p>
+            <p>Click the following link to view your QR Code:</p>
+            <a href="http://localhost:3000/guests/{{guest.id}}/show_qr">View your QR Code</a>
+
+          </div>
+          <br><br>
+          <p>Please refer your friends using the link</p>
+          <p>
+            <a href='{{refer_url}}' style="text-decoration: none; 
                                   color:black; 
                                   border: 2px solid #b94c4c; 
                                   padding: 10px 30px;
-                                  font-weight: bold;"> 
-                           REFER 
-                      </a>
-                    </p>
-                    <p style="color: black; font-family: Comic Sans MS, Comic Sans, cursive; font-size: 15px;">
-                      <br>
-                      Thanks for joining and have a great day!
-                    </p>
-                </td>
-            </tr>              
-      
-  </body>
+                                  font-weight: bold;">
+              REFER
+            </a>
+          </p>
+          <p style="color: black; font-family: Comic Sans MS, Comic Sans, cursive; font-size: 15px;">
+            <br>
+            Thanks for joining and have a great day!
+          </p>
+        </td>
+      </tr>
+
+</body>
+
 </html>

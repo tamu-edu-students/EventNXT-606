@@ -3,7 +3,8 @@ source "https://rubygems.org"
 ruby "3.1.2"
 
 gem "rails", "~> 7.0.0"
-
+gem 'nokogiri', '~> 1.8'
+gem 'rqrcode', '~> 2.1'
 gem "mustache", "~> 1.1"
 gem "tzinfo-data"
 gem "sprockets-rails"
@@ -14,7 +15,7 @@ gem "stimulus-rails", "~> 1.0.0"
 gem "turbo-rails", "~> 1.0.0"
 gem "sassc-rails", "~> 2.1.0"
 gem "jbuilder", "~> 2.11.0"
-
+gem 'mini_magick'
 gem "bootstrap", "~> 5.1"
 gem "terser", "~> 1.1"
 

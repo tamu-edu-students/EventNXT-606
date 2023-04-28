@@ -50,14 +50,17 @@
     <div class="ticket">
         <img class='w-25 me-2' src='<%= url_for(@event.image) %>' alt='Event image' title='Event Image'>
       
+      <p><strong>HElloooooooo</strong></p>
       <p><b><strong>Name: </strong><%= @guest.first_name %> <%= @guest.last_name %></b></p>
       <p><b><strong>Event title: </strong><%= @event.title %></b></p>
       <p><b><strong>Event date: </strong><%= @event.datetime %></b></p>
       <%= @guest.seats.select(:category).distinct.each do |category| %>
-      <p><b><strong>Seat Category: </strong><%= category %></b></p>
+        <p><b><strong>Seat Category: </strong><%= category %></b></p>
       <% end %>
+        <p><strong>HElloooooooo</strong></p>
         <p><strong>About Event: </strong><%= @event.description %></p>
         <p><strong>Event address: </strong><%= @event.address %></p>
+        <p><strong>QR Code: </strong><%= raw @guest.qr_code %></p>
 
 
         <br>
