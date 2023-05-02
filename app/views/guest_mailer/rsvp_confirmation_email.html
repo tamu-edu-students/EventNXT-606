@@ -74,7 +74,9 @@
             <p><strong>Event address: </strong>{{event.address}}</p>
             <p><strong>Guest ID: </strong>{{guest.id}}</p>
             <p>Click the following link to view your QR Code:</p>
-            <a href="http://localhost:3000/guests/{{guest.id}}/show_qr">View your QR Code</a>
+            <a href="{{guest.qr_code_url}}">View your QR Code</a>
+
+
 
           </div>
           <br><br>

@@ -62,4 +62,12 @@ class Guest < ApplicationRecord
     save
     Rails.logger.info "QR code and QR code PNG generated for guest #{self.id}"
   end
+
+
+  # generate url for qr code
+  def qr_code_url
+    Rails.application.routes.url_helpers.show_qr_guest_url(self, host: Rails.application.config.action_mailer.default_url_options[:host])
+  end
+
+
 end
